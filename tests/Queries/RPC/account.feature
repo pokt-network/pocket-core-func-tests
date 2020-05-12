@@ -1,5 +1,4 @@
 Feature: /v1/query/account endpoint
-
   Scenario: Account exists
     Given a pocket core node
     And a genesis file query-account-rpc-genesis-step1.json
@@ -46,4 +45,4 @@ Feature: /v1/query/account endpoint
       {
         "code":400,
         "message":"encoding/hex: invalid byte: U+002D '-'"
-      }
+       }
