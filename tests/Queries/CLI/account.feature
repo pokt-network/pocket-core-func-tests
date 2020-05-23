@@ -14,7 +14,7 @@ Feature: Account method in pocket-core cli's  query namespace
 
   Scenario: Invalid height 
     Given a pocket core node
-    And a genesis file query-account-rpc-genesis-step12json
+    And a genesis file query-account-rpc-genesis-step1.json
     And an account exists in the pocket network with address 4920ce1d787c60e2eaeff366c79e8aa2b82525f1
     When I use pocket query namespace
     And I use the method account
@@ -39,7 +39,7 @@ Feature: Account method in pocket-core cli's  query namespace
             Pubkey:        null
             Coins:         null
 
-  Scenario: Account number is invalid
+  Scenario: Account address is invalid
     Given a pocket core node
     And a genesis file query-account-rpc-genesis-step3.json
     And an account doesn't exist in the pocket network with address 2BBCA5DC9792C72AC3A2616910C4AAAA
@@ -49,7 +49,7 @@ Feature: Account method in pocket-core cli's  query namespace
     Then the CLI response should be detailing:
         Incorrect address length
 
-  Scenario: Account number contains invalid characters
+  Scenario: Account address contains invalid characters
     Given a pocket core node
     And a genesis file query-account-rpc-genesis-step3.json
     And an account doesn't exist in the pocket network with address 1-$A&DA72BBCA5DC9792C72AC3A2616910C479B3
