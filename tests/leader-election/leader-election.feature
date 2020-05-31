@@ -2,7 +2,7 @@ Feature: Pocket Network Blockchain Leader Election
 
 The Pocket Network blockchain is a Proof of Stake system
 that elects a leader pseudo-randomly each block to be the
-block producer. This pseudo-random selection needs to be continously unifrom 
+block producer. This pseudo-random selection needs to be continously uniform 
 and weighted based on the validator's distribution of power.
 Validator power comes from a direct linear correlation between the amount
 of staked POKT cryptocurrency and the power conversion multiplier.
