@@ -5,19 +5,24 @@ Scenario: Pocket Accounts commands
     Then user should be able to see following list of available commands and description as Examples:
     | command  | description  |
     {
-        create            Create a new account
-        delete            Delete an account
-        export            Export an account
-        export-raw        Export Plaintext Privkey
-        get-coinbase      Gets the coinbase account from the keybase
-        import-armored    Import keypair using armor
-        import-raw        import-raw <private-key-hex>
-        list              List all accounts
-        send-raw-tx       Send raw transaction from signed bytes
-        send-tx           Send POKT
-        show              Shows a pubkey for address
-        sign              Sign a message with an account
-        update-passphrase Update account passphrase
+        build-MS-Tx         build and sign a multisic tx
+        create              Create a new account
+        create-multi-public create a multisig public key
+        delete              Delete an account
+        export              Export an account
+        export-raw          Export Plaintext Privkey
+        get-validator       Retrieves the main validator from the priv_val file
+        import-armored      Import keypair using armor
+        import-raw          import-raw <private-key-hex>
+        list                List all accounts
+        send-raw-tx         Send raw transaction from signed bytes
+        send-tx             Send uPOKT
+        set-validator       Sets the main validator account for tendermint
+        show                Shows a pubkey for address
+        sign                Sign a message with an account
+        sign-ms-next        sign a multisic tx
+        sign-ms-tx          sign a multisic tx
+        update-passphrase   Update account passphrase
     }
 
 Scenario: To create a new account
@@ -135,20 +140,6 @@ Scenario: To export an existing plaintext private key, providing incomplete comm
 
         accepts 1 arg(s), received 0
         |
-
-Scenario: To get an accounts coinbase
-    Given that the user has Pocket Network latest version installed.
-    And wants to get an accounts coinbase address
-    When typing "pocket accounts get-coinbase".
-    Then user should receive the coinbase as follows: "Coinbase Account:<address>". Examples:
-    | Coinbase Account:031ccd0821df95cd80b78182c04937b45456b08f|
-
-Scenario: To get an accounts coinbase, within a list of accounts
-    Given that the user has Pocket Network latest version installed.
-    And wants to get an accounts coinbase address
-    When typing "pocket accounts get-coinbase 031ccd0821df95cd80b78182c04937b45456b08f".
-    Then user should receive the coinbase as follows: "Coinbase Account:<address>". Examples:
-    | Coinbase Account:031ccd0821df95cd80b78182c04937b45456b08f|
 
 Scenario: To import a keypairs using armor
     Given that the user has Pocket Network latest version installed.
