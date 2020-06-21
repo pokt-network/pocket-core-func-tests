@@ -32,13 +32,13 @@ Scenario: To show existing commands within the pocket nodes section
 Scenario: To stake an node in the network
     Given that the user has Pocket Network latest version installed.
     And wants to stake his node into the network
-    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI>"
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <fees>"
     Then user should be shown a success message
 
-Scenario: To stake an nodePP in the network, wrong address
+Scenario: To stake an node in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to stake his node into the network
-    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI>, with wrong address
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <fees>, with wrong address"
     Then user should be shown a failure message
 
 Scenario: To stake a nodes in the network, zero as amount
@@ -49,7 +49,7 @@ Scenario: To stake a nodes in the network, zero as amount
 Scenario: To stake a nodes in the network, wrong serviceURI
     Given that the user has Pocket Network latest version installed.
     And wants to stake his node into the network
-    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI>", with wrong chains
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <fees>", with wrong chains
     Then user should be shown a failure message
 
 Scenario: To stake a node in the network, incomplete command
@@ -82,13 +82,13 @@ Scenario: To stake a node in the network, incomplete command
 Scenario: To unjail a node in the network
     Given that the user has Pocket Network latest version installed.
     And wants to unjail his node into the network
-    When typing "pocket nodes unjail <fromAddr> [flags]"
+    When typing "pocket nodes unjail <fromAddr> <fees> [flags]"
     Then user should be shown a success message
 
 Scenario: To unjail a node in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to unjail his node into the network
-    When typing "pocket nodes unjail <fromAddr> [flags]", with wrong address
+    When typing "pocket nodes unjail <fromAddr> <fees> [flags]", with wrong address
     Then user should be shown a failure message
 
 Scenario: To unjail a node in the network, incomplete command
@@ -118,13 +118,13 @@ Scenario: To unjail a node in the network, incomplete command
 Scenario: To unstake a node in the network
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his node into the network
-    When typing "pocket nodes unstake <fromAddr> [flags]"
+    When typing "pocket nodes unstake <fromAddr> <fees> [flags]"
     Then user should be shown a success message
 
 Scenario: To unstake a node in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his node into the network
-    When typing "pocket nodes unstake <fromAddr> [flags]", with wrong address
+    When typing "pocket nodes unstake <fromAddr> <fees> [flags]", with wrong address
     Then user should be shown a failure message
 
 Scenario: To unstake a node in the network, incomplete command
