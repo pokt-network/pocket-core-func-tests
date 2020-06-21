@@ -11,21 +11,30 @@ Scenario: To show existing commands within the pocket query section
 
     Available Commands:
     account            Gets an account
+    account-txs        Get the transactions sent by the address, paginated by page and per_page
+    acl                Gets the gov acl
     app                Gets app from address
     app-params         Gets app parameters
     apps               Gets apps
     balance            Gets account balance
     block              Get block at height
+    block-txs          Get the transactions at a certain block height, paginated by page and per_page
+    daoOwner           Gets the owner of the dao
+    node-claim         Gets node pending claim for work completed
+    node-claims        Gets node pending claims for work completed
     height             Get current height
     node               Gets node from address
     node-params        Gets node parameters
     node-receipt       Gets node receipt for work completed
     node-receipts      Gets node receipts for work completed
     nodes              Gets nodes
+    param              Get a parameter with the given key
+    params             Gets all parameters
     pocket-params      Gets pocket parameters
     supply             Returns
     supported-networks Gets pocket supported networks
     tx                 Get the transaction by the hash
+    upgrade            Gets the latest gov upgrade
 
     Flags:
     -h, --help   help for query
@@ -41,12 +50,6 @@ Scenario: To show existing commands within the pocket query section
         --tmRPCPort string          the port for tendermint rpc (default "26657")
 
     Use "pocket query [command] --help" for more information about a command.|
-
-Scenario: To query an existing account
-    Given that the user has Pocket Network latest version installed.
-    And wants to query an accounts information
-    When typing "pocket query account <accAddr> <height> [flags]"
-    Then user should be prompted succeed message see the account information.
 
 Scenario: To query an existing account
     Given that the user has Pocket Network latest version installed.
@@ -71,7 +74,7 @@ Scenario: To query an existing account, wrong height
 Scenario: To query an existing account, incomplete command
     Given that the user has Pocket Network latest version installed.
     And wants to query an accounts information
-    When typing "pocket query account", with wrong height
+    When typing "pocket query account"
     Then user should be prompted a failure message and suggestions. Examples:
     | Error: requires at least 1 arg(s), only received 0
     Usage:
@@ -91,6 +94,53 @@ Scenario: To query an existing account, incomplete command
         --tmRPCPort string          the port for tendermint rpc (default "26657")
 
     requires at least 1 arg(s), only received 0|
+
+Scenario: To query an existing account txs
+    Given that the user has Pocket Network latest version installed.
+    And wants to query an accounts information
+    When typing "pocket query account-txs <address> <page> <per_page> <prove> <received> [flags]"
+    Then user should be prompted succeed message see the account txs paginated.
+
+Scenario: To query an existing account txs, wrong address
+    Given that the user has Pocket Network latest version installed.
+    And wants to query an accounts information
+    When typing "pocket query account-txs <address> <page> <per_page> <prove> <received> [flags]", with wrong address
+    Then user should be prompted a failure message. Examples:
+    | encoding/hex: invalid byte: U+0073|
+
+Scenario: To query an existing account txs, wrong proof 
+    Given that the user has Pocket Network latest version installed.
+    And wants to query an accounts information
+    When typing "pocket query account-txs <address> <page> <per_page> <prove> <received> [flags]", with wrong proof 
+    Then user should be prompted a failure message. Examples:
+    | encoding/hex: invalid byte: U+0073|
+
+Scenario: To query an existing account txs, incomplete command
+    Given that the user has Pocket Network latest version installed.
+    And wants to query an accounts information
+    When typing "pocket query account-txs"
+    Then user should be prompted a failure message and suggestions. Examples:
+    |Error: accepts between 1 and 5 arg(s), received 0
+    Usage:
+    pocket query account-txs <address> <page> <per_page> <prove> <received> [flags]
+
+    Flags:
+    -h, --help   help for account-txs
+
+    Global Flags:
+        --datadir string            data directory (default is $HOME/.pocket/
+        --node string               takes a remote endpoint in the form <protocol>://<host>:<port>
+        --persistent_peers string   a comma separated list of PeerURLs: '<ID>@<IP>:<PORT>,<ID2>@<IP2>:<PORT>...<IDn>@<IPn>:<PORT>'
+        --remoteCLIURL string       takes a remote endpoint in the form of <protocol>://<host> (uses RPC Port)
+        --seeds string              a comma separated list of PeerURLs: '<ID>@<IP>:<PORT>,<ID2>@<IP2>:<PORT>...<IDn>@<IPn>:<PORT>'
+
+    2020/06/21 01:58:22 accepts between 1 and 5 arg(s), received 0|
+
+Scenario: To query current acl
+    Given that the user has Pocket Network latest version installed.
+    And wants to query an app information from an existing address
+    When typing "pocket query acl [flags]"
+    Then user should be prompted succeed message see the current ACL
 
 Scenario: To query an existing app from address
     Given that the user has Pocket Network latest version installed.
@@ -149,7 +199,7 @@ Scenario: To query an existing app parameters, wrong address
 Scenario: To query the list of existing apps
     Given that the user has Pocket Network latest version installed.
     And wants to query the list of apps
-    When typing "pocket query apps"
+    When typing "pocket query apps [flags]"
     Then user should be prompted succeed message see the app list.
 
 Scenario: To query an address balance in the network
@@ -194,13 +244,46 @@ Scenario: To query an address balance in the network, incomplete command
 
     requires at least 1 arg(s), only received 0|
 
-Scenario: To query a block's height
+Scenario: To query a block's at height
     Given that the user has Pocket Network latest version installed.
     And wants to see the block's height
-    When typing "pocket query block"
+    When typing "pocket query block <height>"
     Then user should be prompted succeed message and see the block's height.
 
-Scenario: To query the general height
+Scenario: To query a block's at height
+    Given that the user has Pocket Network latest version installed.
+    And wants to see the block's height
+    When typing "pocket query block-txs <height> <page> <per_page> <prove> [flags]"
+    Then user should be prompted succeed message and see the block's height.
+
+Scenario: To query a block's at height, incomplete
+    Given that the user has Pocket Network latest version installed.
+    And wants to see the block's height
+    When typing "pocket query block-txs [flags]"
+    Then user should be prompted a failure message and suggestions. Examples:
+    |Error: accepts between 1 and 4 arg(s), received 0
+    Usage:
+    pocket query block-txs <height> <page> <per_page> <prove> [flags]
+
+    Flags:
+    -h, --help   help for block-txs
+
+    Global Flags:
+        --datadir string            data directory (default is $HOME/.pocket/
+        --node string               takes a remote endpoint in the form <protocol>://<host>:<port>
+        --persistent_peers string   a comma separated list of PeerURLs: '<ID>@<IP>:<PORT>,<ID2>@<IP2>:<PORT>...<IDn>@<IPn>:<PORT>'
+        --remoteCLIURL string       takes a remote endpoint in the form of <protocol>://<host> (uses RPC Port)
+        --seeds string              a comma separated list of PeerURLs: '<ID>@<IP>:<PORT>,<ID2>@<IP2>:<PORT>...<IDn>@<IPn>:<PORT>'
+
+    2020/06/21 02:05:22 accepts between 1 and 4 arg(s), received 0|
+
+Scenario: To query dao owner 
+    Given that the user has Pocket Network latest version installed.
+    And wants to see the height
+    When typing "pocket query daoOwner"
+    Then user should be prompted succeed message and see the height.
+
+Scenario: To query the chains height
     Given that the user has Pocket Network latest version installed.
     And wants to see the height
     When typing "pocket query height"
@@ -248,6 +331,93 @@ Scenario: To query an existing node from address, incomplete command
         --tmPeersPort string        the port for tendermint p2p (default "26656")
         --tmRPCPort string          the port for tendermint rpc (default "26657")|
 
+Scenario: To query an existing node claim
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-claim <nodeAddr> <appPubKey> <claimType> <networkId> <sessionHeight> <height> [flags]"
+    Then user should be prompted succeed message see the node claim information.
+
+Scenario: To query an existing node claim, wrong address
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-claim <nodeAddr> <appPubKey> <claimType> <networkId> <sessionHeight> <height> [flags]", with wrong address
+    Then user should be prompted a failure message. Examples:
+    | encoding/hex: invalid byte: U+0073|
+
+Scenario: To query an existing node claim, wrong pub key
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-claim <nodeAddr> <appPubKey> <claimType> <networkId> <sessionHeight> <height> [flags]", with wrong public key 
+    Then user should be prompted a failure message. Examples:
+    | encoding/hex: invalid byte: U+0073|
+
+Scenario: To query an existing node claim, invalid session height
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-claim <nodeAddr> <appPubKey> <claimType> <networkId> <sessionHeight> <height> [flags]", with invalid height
+    Then user should be prompted a failure message
+
+Scenario: To query an existing node claim, invalid claimType
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-claim <nodeAddr> <appPubKey> <claimType> <networkId> <sessionHeight> <height> [flags]", with invalid claimType
+    Then user should be prompted a failure message
+
+Scenario: To query an existing node claim, incomplete
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-claim"
+    Then user should be prompted a failure message and suggestions. Examples:
+    |Error: requires at least 5 arg(s), only received 0
+    Usage:
+    pocket query node-claim <nodeAddr> <appPubKey> <claimType> <networkId> <sessionHeight> <height>` [flags]
+
+    Flags:
+    -h, --help   help for node-claim
+
+    Global Flags:
+        --datadir string            data directory (default is $HOME/.pocket/
+        --node string               takes a remote endpoint in the form <protocol>://<host>:<port>
+        --persistent_peers string   a comma separated list of PeerURLs: '<ID>@<IP>:<PORT>,<ID2>@<IP2>:<PORT>...<IDn>@<IPn>:<PORT>'
+        --remoteCLIURL string       takes a remote endpoint in the form of <protocol>://<host> (uses RPC Port)
+        --seeds string              a comma separated list of PeerURLs: '<ID>@<IP>:<PORT>,<ID2>@<IP2>:<PORT>...<IDn>@<IPn>:<PORT>'
+
+    2020/06/21 02:09:42 requires at least 5 arg(s), only received 0|
+
+Scenario: To query an existing node claims
+    Given that the user has Pocket Network latest version installed.
+    And wants to query an accounts information
+    When typing "pocket query node-claims <nodeAddr> <height> [flags]"
+    Then user should be prompted succeed message see the node claims information.
+
+Scenario: To query an existing node claims, wrong address
+    Given that the user has Pocket Network latest version installed.
+    And wants to query an accounts information
+    When typing "pocket query node-claims <nodeAddr> <height> [flags]", with wrong address
+    Then user should be prompted a failure message. Examples:
+    | encoding/hex: invalid byte: U+0073|
+
+Scenario: To query an existing node claims, incomplete
+    Given that the user has Pocket Network latest version installed.
+    And wants to query an accounts information
+    When typing "pocket query node-claims"
+    Then user should be prompted a failure message and suggestions. Examples:
+    |Error: requires at least 1 arg(s), only received 0
+    Usage:
+    pocket query node-claims <nodeAddr> <height> [flags]
+
+    Flags:
+    -h, --help   help for node-claims
+
+    Global Flags:
+        --datadir string            data directory (default is $HOME/.pocket/
+        --node string               takes a remote endpoint in the form <protocol>://<host>:<port>
+        --persistent_peers string   a comma separated list of PeerURLs: '<ID>@<IP>:<PORT>,<ID2>@<IP2>:<PORT>...<IDn>@<IPn>:<PORT>'
+        --remoteCLIURL string       takes a remote endpoint in the form of <protocol>://<host> (uses RPC Port)
+        --seeds string              a comma separated list of PeerURLs: '<ID>@<IP>:<PORT>,<ID2>@<IP2>:<PORT>...<IDn>@<IPn>:<PORT>'
+
+    2020/06/21 02:29:47 requires at least 1 arg(s), only received 0|
+
 Scenario: To query an existing node parameters
     Given that the user has Pocket Network latest version installed.
     And wants to query a node information from an existing address, such as parameters
@@ -259,6 +429,96 @@ Scenario: To query an existing node parameters, wrong address
     And wants to query a node information from an existing address, such as parameters
     When typing "pocket query node-params <address>", wrong address
     Then user should be prompted a failure message.
+
+Scenario: To query an existing node receipt 
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-receipt <nodeAddr> <appPubKey> <receiptType> <networkId> <sessionHeight> <height> [flags]"
+    Then user should be prompted succeed message see the node receipt information.
+
+Scenario: To query an existing node receipt, wrong address
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-receipt <nodeAddr> <appPubKey> <receiptType> <networkId> <sessionHeight> <height> [flags]", with wrong address
+    Then user should be prompted a failure message. Examples:
+    | encoding/hex: invalid byte: U+0073|
+
+Scenario: To query an existing node receipt, wrong pub key
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-receipt <nodeAddr> <appPubKey> <receiptType> <networkId> <sessionHeight> <height> [flags]", with wrong public key 
+    Then user should be prompted a failure message. Examples:
+    | encoding/hex: invalid byte: U+0073|
+
+Scenario: To query an existing node receipt, invalid session height
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-receipt <nodeAddr> <appPubKey> <receiptType> <networkId> <sessionHeight> <height> [flags]", with invalid height 
+    Then user should be prompted a failure message
+
+Scenario: To query an existing node receipt, invalid claimType
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-receipt <nodeAddr> <appPubKey> <receiptType> <networkId> <sessionHeight> <height> [flags]", with invalid claim type 
+    Then user should be prompted a failure message
+
+Scenario: To query an existing node receipt, incomplete
+    Given that the user has Pocket Network latest version installed.
+    And wants to query a node information from an existing address
+    When typing "pocket query node-receipt"
+    Then user should be prompted a failure message and suggestions. Examples:
+    |Error: requires at least 5 arg(s), only received 0
+    Usage:
+    pocket query node-receipt <nodeAddr> <appPubKey> <receiptType> <networkId> <sessionHeight> <height>` [flags]
+
+    Flags:
+    -h, --help   help for node-claim
+
+    Global Flags:
+        --datadir string            data directory (default is $HOME/.pocket/
+        --node string               takes a remote endpoint in the form <protocol>://<host>:<port>
+        --persistent_peers string   a comma separated list of PeerURLs: '<ID>@<IP>:<PORT>,<ID2>@<IP2>:<PORT>...<IDn>@<IPn>:<PORT>'
+        --remoteCLIURL string       takes a remote endpoint in the form of <protocol>://<host> (uses RPC Port)
+        --seeds string              a comma separated list of PeerURLs: '<ID>@<IP>:<PORT>,<ID2>@<IP2>:<PORT>...<IDn>@<IPn>:<PORT>'
+
+    2020/06/21 02:09:42 requires at least 5 arg(s), only received 0|
+    
+Scenario: To query an existing node receipts 
+    Given that the user has Pocket Network latest version installed.
+    And wants to query an accounts information
+    When typing "pocket query node-receipts <nodeAddr> <height> [flags]"
+    Then user should be prompted succeed message see the node receipts information.
+
+Scenario: To query an existing node receipts, wrong address
+    Given that the user has Pocket Network latest version installed.
+    And wants to query an accounts information
+    When typing "pocket query node-claims <nodeAddr> <height> [flags]", with wrong address
+    Then user should be prompted a failure message. Examples:
+    | encoding/hex: invalid byte: U+0073|
+
+Scenario: To query the list of existing nodes 
+    Given that the user has Pocket Network latest version installed.
+    And wants to query the list of apps
+    When typing "pocket query nodes [flags]"
+    Then user should be prompted succeed message see the nodes list.
+
+Scenario: To query single param
+    Given that the user has Pocket Network latest version installed.
+    And wants to query the list of apps
+    When typing "pocket query param <key> <height> [flags]"
+    Then user should be prompted succeed message see param information.
+
+Scenario: To query the list of params
+    Given that the user has Pocket Network latest version installed.
+    And wants to query the list of apps
+    When typing "pocket query params [flags]"
+    Then user should be prompted succeed message see the params list.
+
+Scenario: To query the list of pocketcore params 
+    Given that the user has Pocket Network latest version installed.
+    And wants to query the list of apps
+    When typing "pocket query pocket-params [flags]"
+    Then user should be prompted succeed message see the pocketcore params list.
 
 Scenario: To get supplies
     Given that the user has Pocket Network latest version installed.
@@ -307,3 +567,9 @@ Scenario: To get transactions based on the hash, incomplete commands
         --tmRPCPort string          the port for tendermint rpc (default "26657")
 
     accepts 1 arg(s), received 0|
+
+Scenario: To query the latest upgrade
+    Given that the user has Pocket Network latest version installed.
+    And wants to query the list of apps
+    When typing "pocket query upgrade [flags]"
+    Then user should be prompted succeed message see the upgrade information.
