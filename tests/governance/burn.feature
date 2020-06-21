@@ -5,8 +5,8 @@ Feature: Burn
    Scenario Outline: Burn funds from DAO 
     Given a pocket network with <ChainID>
     And a DAO address
-    When typing "pocket gov transfer <amount> <DAO Address> <toAddress> <ChainID>  <fees>"
-      | pocket gov burn 100000 abf1df709a0cc486ac6db216ba9ed260e5597ba9 1445e7a38aaf8b78440366f5b7af97fdef3e3b1f testnet pocket gov transfer abf1df709a0cc486ac6db216ba9ed260e5597ba9 1445e7a38aaf8b78440366f5b7af97fdef3e3b1f testnet 100000 |
+    When typing "pocket gov transfer <amount> <DAO Address> <toAddress> <ChainID> <fees>"
+      | pocket gov burn 100000 abf1df709a0cc486ac6db216ba9ed260e5597ba9 1445e7a38aaf8b78440366f5b7af97fdef3e3b1f testnet 100000 |
     And hitting enter
     Then user should be prompted to enter its passphrase: "Enter Passphrase: "
     When passphrase is provided
