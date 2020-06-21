@@ -31,6 +31,7 @@ Scenario: To show existing commands within the pocket nodes section
 
 Scenario: To stake an node in the network
     Given that the user has Pocket Network latest version installed.
+    Given a minimum stake of 100000
     And wants to stake his node into the network
     When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
       | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 testnet 100000 |
@@ -39,15 +40,16 @@ Scenario: To stake an node in the network
 Scenario: To stake an node in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to stake his node into the network
-    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>, with wrong address"
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>", with wrong address
       | pocket nodes stake "foobar" 100000 0022 testnet 100000 |
     Then user should be shown a failure message
 
-Scenario: To stake a nodes in the network, zero as amount
+Scenario: To stake a nodes in the network, amount lower than minimum stake
     Given that the user has Pocket Network latest version installed.
+    Given a param pos/StakeMinimum of 100000
     And wants to stake his node into the network
-    When typing "pocket nodes a failure message"
-    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 "000000 0 0022 testnet 100000 |
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>", lower than pos/StakeMinimum
+    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 0 0022 testnet 100000 |
     Then user should be shown a failure message
 
 Scenario: To stake a nodes in the network, wrong serviceURI
