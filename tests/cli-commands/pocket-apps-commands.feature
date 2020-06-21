@@ -80,25 +80,25 @@ Scenario: To create an AAT, incomplete command
 Scenario: To stake an APP in the network
     Given that the user has Pocket Network latest version installed.
     And wants to stake his APP into the network
-    When typing "pocket apps stake <fromAddr> <amount> <chains> [flags]"
+    When typing "pocket apps stake <fromAddr> <amount> <chains> <chainID> <fees> [flags]"
     Then user should be shown a success message
 
 Scenario: To stake an APP in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to stake his APP into the network
-    When typing "pocket apps stake <fromAddr> <amount> <chains> [flags]", with wrong address
+    When typing "pocket apps stake <fromAddr> <amount> <chains> <chainID> <fees> [flags]", with wrong address
     Then user should be shown a failure message
 
 Scenario: To stake an APP in the network, zero as amount
     Given that the user has Pocket Network latest version installed.
     And wants to stake his APP into the network
-    When typing "pocket apps stake <fromAddr> <amount> <chains> [flags]", with zero as an amount
+    When typing "pocket apps stake <fromAddr> <amount> <chains> <chainID> <fees> [flags]", with zero as an amount
     Then user should be shown a failure message 
 
 Scenario: To stake an APP in the network, wrong chains
     Given that the user has Pocket Network latest version installed.
     And wants to stake his APP into the network
-    When typing "pocket apps stake <fromAddr> <amount> <chains> [flags]", with wrong chains
+    When typing "pocket apps stake <fromAddr> <amount> <chains> <chainID> <fees> [flags]", with wrong chains
     Then user should be shown a failure message
 
 Scenario: To stake an APP in the network, incomplete command
@@ -109,9 +109,9 @@ Scenario: To stake an APP in the network, incomplete command
     And typing "pocket apps stake <amount>"
     And typing "pocket apps stake "
     Then user should be prompted an error message, such as. Examples:
-    | Error: accepts 3 arg(s), received 0
+    | Error: accepts 5 arg(s), received 0
     Usage:
-    pocket apps stake <fromAddr> <amount> <chains> [flags]
+    pocket apps stake <fromAddr> <amount> <chains> <chainID> <fees> [flags]
 
     Flags:
     -h, --help   help for stake
@@ -129,13 +129,13 @@ Scenario: To stake an APP in the network, incomplete command
 Scenario: To unstake an APP in the network
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his APP into the network
-    When typing "pocket apps unstake <fromAddr> [flags]"
+    When typing "pocket apps unstake <fromAddr> <chainID> <fees> [flags]"
     Then user should be shown a success message
 
 Scenario: To unstake an APP in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his APP into the network
-    When typing "pocket apps unstake <fromAddr> [flags]", with wrong address
+    When typing "pocket apps unstake <fromAddr> <chainID> <fees> [flags]", with wrong address
     Then user should be shown a failure message
 
 Scenario: To unstake an APP in the network, incomplete command
@@ -143,9 +143,9 @@ Scenario: To unstake an APP in the network, incomplete command
     And wants to unstake his APP into the network
     When typing "pocket apps unstake "
     Then user should be prompted an error message, such as. Examples:
-    | Error: accepts 1 arg(s), received 0
+    | Error: accepts 3 arg(s), received 0
     Usage:
-    pocket apps unstake <fromAddr> [flags]
+    pocket apps unstake <fromAddr> <chainID> <fees> [flags]
 
     Flags:
     -h, --help   help for unstake
@@ -160,4 +160,4 @@ Scenario: To unstake an APP in the network, incomplete command
         --tmPeersPort string        the port for tendermint p2p (default "26656")
         --tmRPCPort string          the port for tendermint rpc (default "26657")
 
-    accepts 1 arg(s), received 0|
+    accepts 3 arg(s), received 0|
