@@ -27,35 +27,28 @@ Scenario: User wants to see the utilities within pocket
 Scenario: User wants to generate a chain identifier
     Given that user has Pocket installed and running
     And wants to generate a chain identifier
-    When user types in "pocket util generate-chain <ticker> <netid> <version> <client> <interface> [flags]"
-    Then user should see the success message and the generated chain ID.
+    When user types in "pocket util generate-chain [flags]"
+    Then user should be prompted to enter ID of the network: "Enter the ID of the network identifier:"
+    When user types in a network ID "0001"
+    Then user should be prompted to enter the URL of the network: "Enter the URL of the network identifier:"
+    When user types in the network URL "http://127.0.0.1"
+    Then user should be prompted to enter another network: "Would you like to enter another network identifier? (y/n)"
+    When user types in "n"
+    Then user receives a prompt & a chains.json file
+    |chains.json contains: 
+
+     0001 @ 127.0.0.1
+If incorrect: please remove the chains.json with the delete-chains command|
 
 Scenario: User wants to generate a chain identifier, wrong ticker
     Given that user has Pocket installed and running
     And wants to generate a chain identifier
-    When user types in "pocket util generate-chain <ticker> <netid> <version> <client> <interface> [flags]", wrong ticker
-    Then user should see the failure message.
-
-Scenario: User wants to generate a chain identifier, wrong netid
-    Given that user has Pocket installed and running
-    And wants to generate a chain identifier
-    When user types in "pocket util generate-chain <ticker> <netid> <version> <client> <interface> [flags]", wrong netid
-    Then user should see the failure message.
-
-Scenario: User wants to generate a chain identifier, wrong version
-    Given that user has Pocket installed and running
-    And wants to generate a chain identifier
-    When user types in "pocket util generate-chain <ticker> <netid> <version> <client> <interface> [flags]", wrong version
-    Then user should see the failure message.
-
-Scenario: User wants to generate a chain identifier, wrong client
-    Given that user has Pocket installed and running
-    And wants to generate a chain identifier
-    When user types in "pocket util generate-chain <ticker> <netid> <version> <client> <interface> [flags]", wrong client
-    Then user should see the failure message.
-
-Scenario: User wants to generate a chain identifier, wrong interface
-    Given that user has Pocket installed and running
-    And wants to generate a chain identifier
-    When user types in "pocket util generate-chain <ticker> <netid> <version> <client> <interface> [flags]", wrong interface
-    Then user should see the failure message.
+    When user types in "pocket util generate-chain [flags]"
+    Then user should be prompted to enter ID of the network: "Enter the ID of the network identifier:"
+    When user types in a network ID "foobar"
+    Then user recives an eror prompt
+    |ERROR:
+Codespace: pos
+Code: 119
+Message: "the network Identifier is not valid: encoding/hex: invalid byte: U+006E 'n'"|
+    Then user should be prompted to enter ID of the network: "Enter the ID of the network identifier:"
