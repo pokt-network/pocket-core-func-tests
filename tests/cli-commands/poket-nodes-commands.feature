@@ -32,24 +32,29 @@ Scenario: To show existing commands within the pocket nodes section
 Scenario: To stake an node in the network
     Given that the user has Pocket Network latest version installed.
     And wants to stake his node into the network
-    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <fees>"
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+      | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 testnet 100000 |
     Then user should be shown a success message
 
 Scenario: To stake an node in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to stake his node into the network
-    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <fees>, with wrong address"
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>, with wrong address"
+      | pocket nodes stake "foobar" 100000 0022 testnet 100000 |
     Then user should be shown a failure message
 
 Scenario: To stake a nodes in the network, zero as amount
     Given that the user has Pocket Network latest version installed.
     And wants to stake his node into the network
     When typing "pocket nodes a failure message"
+    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 "000000 0 0022 testnet 100000 |
+    Then user should be shown a failure message
 
 Scenario: To stake a nodes in the network, wrong serviceURI
     Given that the user has Pocket Network latest version installed.
     And wants to stake his node into the network
-    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <fees>", with wrong chains
+    When typing "pocket nodes stake <fromAddr> <amount> <serviceURI> <chains> <fees>", with non registered chains
+    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 "foobar" testnet 100000 |
     Then user should be shown a failure message
 
 Scenario: To stake a node in the network, incomplete command
@@ -60,9 +65,9 @@ Scenario: To stake a node in the network, incomplete command
     And typing "pocket nodes stake <amount>"
     And typing "pocket nodes stake "
     Then user should be prompted an error message, such as. Examples:
-    | Error: accepts 4 arg(s), received 0
+    | Error: accepts 6 arg(s), received 0
     Usage:
-    pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> [flags]
+    pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees> [flags]
 
     Flags:
     -h, --help   help for stake
@@ -77,18 +82,20 @@ Scenario: To stake a node in the network, incomplete command
         --tmPeersPort string        the port for tendermint p2p (default "26656")
         --tmRPCPort string          the port for tendermint rpc (default "26657")
 
-    accepts 4 arg(s), received 0|
+    accepts 6 arg(s), received 0|
 
 Scenario: To unjail a node in the network
     Given that the user has Pocket Network latest version installed.
     And wants to unjail his node into the network
-    When typing "pocket nodes unjail <fromAddr> <fees> [flags]"
+    When typing "pocket nodes unjail <fromAddr> <chainID> <fees> [flags]"
+    | pocket nodes unjail abf1df709a0cc486ac6db216ba9ed260e5597ba9 testnet 100000 |
     Then user should be shown a success message
 
 Scenario: To unjail a node in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to unjail his node into the network
-    When typing "pocket nodes unjail <fromAddr> <fees> [flags]", with wrong address
+    When typing "pocket nodes unjail <fromAddr> <chainID> <fees> [flags]", with wrong address
+    | pocket nodes unjail foobar testnet 100000 |
     Then user should be shown a failure message
 
 Scenario: To unjail a node in the network, incomplete command
@@ -96,9 +103,9 @@ Scenario: To unjail a node in the network, incomplete command
     And wants to unjail his node into the network
     When typing "pocket nodes unjail "
     Then user should be prompted an error message, such as. Examples:
-    | Error: accepts 1 arg(s), received 0
+    | Error: accepts 3 arg(s), received 0
     Usage:
-    pocket nodes unjail <fromAddr> [flags]
+    pocket nodes unjail <fromAddr> <chainID> <fees>[flags]
 
     Flags:
     -h, --help   help for unjail
@@ -113,18 +120,20 @@ Scenario: To unjail a node in the network, incomplete command
         --tmPeersPort string        the port for tendermint p2p (default "26656")
         --tmRPCPort string          the port for tendermint rpc (default "26657")
 
-    accepts 1 arg(s), received 0|
+    accepts 3 arg(s), received 0|
 
 Scenario: To unstake a node in the network
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his node into the network
-    When typing "pocket nodes unstake <fromAddr> <fees> [flags]"
+    When typing "pocket nodes unstake <fromAddr> <chainID> <fees> [flags]"
+    | pocket nodes unstake abf1df709a0cc486ac6db216ba9ed260e5597ba9 testnet 100000 |
     Then user should be shown a success message
 
 Scenario: To unstake a node in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his node into the network
-    When typing "pocket nodes unstake <fromAddr> <fees> [flags]", with wrong address
+    When typing "pocket nodes unstake <fromAddr> <chainID> <fees> [flags]", with wrong address
+    | pocket nodes unstake foobar testnet 100000 |
     Then user should be shown a failure message
 
 Scenario: To unstake a node in the network, incomplete command
@@ -132,9 +141,9 @@ Scenario: To unstake a node in the network, incomplete command
     And wants to unstake his node into the network
     When typing "pocket nodes unstake "
     Then user should be prompted an error message, such as. Examples:
-    | Error: accepts 1 arg(s), received 0
+    | Error: accepts 3 arg(s), received 0
     Usage:
-    pocket nodes unstake <fromAddr> [flags]
+    pocket nodes unstake <fromAddr> <chainID> <fees>[flags]
 
     Flags:
     -h, --help   help for unstake
@@ -149,4 +158,4 @@ Scenario: To unstake a node in the network, incomplete command
         --tmPeersPort string        the port for tendermint p2p (default "26656")
         --tmRPCPort string          the port for tendermint rpc (default "26657")
 
-    accepts 1 arg(s), received 0|
+    accepts 3 arg(s), received 0|
