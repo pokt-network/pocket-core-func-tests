@@ -40,7 +40,7 @@ Feature: App method in pocket-core cli's query namespace
         Then the CLI response should be a message detailing:
             "Incorrect address length"
     
-    Scenario: Scenario: Application address has invalid characters
+    Scenario: Application address has invalid characters
         Given a pocket core node
         And a genesis file query-app-rpc-genesis-step3.json
         And an application doesn't exist in the pocket core network with adress 4920ce1d787123456aeff366c79e8aa2
