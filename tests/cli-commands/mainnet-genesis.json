@@ -13952,6 +13952,7 @@
                 },
                 {
                     "address": "c5c218ee45bf9a8185a1698f0b6f7a1bb74cf4a5",
+<<<<<<< HEAD
                     "public_key": "aef1746b6a1719f719a767f14558a6c4e3d9a542e7aff20785736abca6ed7b13",
                     "jailed": true,
                     "status": 2,
@@ -14831,3 +14832,6 @@
         }
     }
 }
+=======
+                    "public_key": "aef1746b6a1719f719a767f14558a6c4e3d9a542e7af
+>>>>>>> refactored existing func-test based on RC-0.6.0
