@@ -21,3 +21,4 @@ Feature: Challenge wrong relay data served by node.
         And all of service nodes return different data while servicing relays
         When a relay is send to the chain for each of them
         Then the challenge request can't be sent by the user as no clear majority of valid responses has been reached by the nodes/validators
+        
