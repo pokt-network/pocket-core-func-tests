@@ -126,8 +126,15 @@ Scenario: 111 User wants to generate a completion script
 
 Scenario: 112 ser wants to decodes a given transaction encoded in Amino base64 bytes
     Given that user has Pocket installed and running
-    When user types in "pocket util decode-tx 5CF03C7DAA343525445A0EB4E4188F850E9EFFC101DE440AEAD4B4C88262913E" (must be an amino base64 encoded transaction)
-    Then user should be shown the transaction hash contained in the json format.
+    When user types in "pocket util decode-tx qALbCxcNCpwBq4P6fApLCkBkMGIyYjVkYmM0NTIwZTM3OTZiNmE5NDVmNWZjNTYxMDBlN2MyMGYxNDUyZWFjMDNhN2I1Mzk1MDZjYWI5NGQ4EgQwMDIxGPljEi8KIJtTB9jJp8+3ruH4LeFmfMjqEEba8SA5iHKQU+xlPCFbEgsQk7HEsoyJtaH+ARgmIhQtd3e+ioxdpoRiOmrr5CPpyfRduygBEg4KBXVwb2t0EgUxMDAwMBppCiWdVEd0IIZqpL/ttK81fYyeDWMcIa7gvb90991lVrKeAjdFMzXkEkBltqW2vB+IvIhsJPjRDs28dIstJVX8SlnwjxeKlSst6nHyFssYHcfrJJtvQihDhi+iu7bf/No9gGsdXcrvMK8CKISErIOI7oWlaQ== true" (must be an amino base64 encoded transaction)
+    Then user should be shown the following information:
+    |Type:           claim
+    Msg:            {{d0b2b5dbc4520e3796b6a945f5fc56100e7c20f1452eac03a7b539506cab94d8 0021 12793} {[155 83 7 216 201 167 207 183 174 225 248 45 225 102 124 200 234 16 70 218 241 32 57 136 114 144 83 236 101 60 33 91] {0 18321439643126536339}} 38 2D7777BE8A8C5DA684623A6AEBE423E9C9F45DBB 1 0}
+    Fee:            10000upokt
+    Entropy:        7586902294217294340
+    Memo:           
+    Signer          2d7777be8a8c5da684623a6aebe423e9c9f45dbb
+    Sig:            866aa4bfedb4af357d8c9e0d631c21aee0bdbf74f7dd6556b29e0237453335e4|
 
 Scenario: 113 User wants to automatically delete the chains.json file
     Given that user has Pocket installed and running
