@@ -79,5 +79,57 @@ Scenario: Make sure that max age of evidence is enforced in blocks
     And user does `pocket version`
     And user receives 
     |RC-0.6.0|
-    
+    And then upgrade height tx is submitted.
+    When new blocks are generated
+    Then user should be able to see double signing from older blocks.
 
+Scenario: Make sure security patch is functional on merkle sum index height
+    Given that the user it's running pocket's older version, RC-0.6.0
+    And user does `pocket version`
+    And user receives 
+    |RC-0.6.0|
+    And The user's node serve's and process relays before the upgrade height TX.
+    And the user is able to see the claims for the pending work done.
+    Then proofs are submitted.
+    And user received pending claims.
+    Then user goes in the code and modifies the pocket-core/codec/codec.go to a specific intentional height.
+    When user sets the upgrade height TX
+    Then user start intentionally to produce relays, which claims/proofs are to be generated and sent in the session block where the upgrade height TX is happening (set steps above)
+    When upgrade height tx is submitted.
+    Then the user should be able to see his nodes claims intact.
+    When blocks passes.
+    Then the user should receive the proof and payments for those claims.
+    And The user's node serve's and process relays before the upgrade height TX.
+    And the user is able to see the claims for the pending work done.
+    Then proofs are submitted.
+    And user received pending claims.
+
+Scenario: Make sure security patch is functional on blockhash for height
+    Given that the user it's running pocket's older version, RC-0.6.0
+    And user does `pocket version`
+    And user receives 
+    |RC-0.6.0|
+    And The user's node serve's and process relays before the upgrade height TX.
+    And the user is able to see the claims for the pending work done.
+    Then proofs are submitted.
+    And user received pending claims.
+    Then user goes in the code and modifies the pocket-core/codec/codec.go to a specific intentional height.
+    When user sets the upgrade height TX
+    Then user start intentionally to produce relays, which claims/proofs are to be generated and sent in the session block where the upgrade height TX is happening (set steps above)
+    When upgrade height tx is submitted.
+    Then the user should be able to see his nodes claims intact.
+    When blocks passes.
+    Then the user should receive the proof and payments for those claims.
+    And The user's node serve's and process relays before the upgrade height TX.
+    And the user is able to see the claims for the pending work done.
+    Then proofs are submitted.
+    And user received pending claims.
+
+Scenario: Make sure current latest version works even for lower upgradeTX versions
+    Given that the user it's running pocket's older version, RC-0.6.0
+    And user does `pocket version`
+    And user receives 
+    |RC-0.6.0|
+    When the user (DAO) submits an upgrade height TX of a version lower than the current latest version.
+    Then all nodes in the latest version should continue as normal and not suffer anything.
+    And all nodes in a version lower than the upgraded one, should stop until upgrading.
