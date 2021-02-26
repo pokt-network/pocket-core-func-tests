@@ -133,3 +133,77 @@ Scenario: Make sure current latest version works even for lower upgradeTX versio
     When the user (DAO) submits an upgrade height TX of a version lower than the current latest version.
     Then all nodes in the latest version should continue as normal and not suffer anything.
     And all nodes in a version lower than the upgraded one, should stop until upgrading.
+
+Scenario: Make sure that max validator validation/param is working - max validators decreased.
+    Given that the user it's running pocket's older version, RC-0.6.0
+    And user does `pocket version`
+    And user receives 
+    |RC-0.6.0|
+    When the network is set to start with 5 max_validators in the genesis.json
+    And those validators are staked.
+    And those validators have served relays and have pending claims, after 2 sessions.
+    Then user changes the max_validators params to 2:
+    |pocket-core gov change_param 4fd7bb7c7b62752cb29163ff455ae4d31326c2d3 0011 pocketcore/MaxValidators \“2\” 10000 false | 
+    When TX has been executed, then user waits 2 more sessions for the new max_validators and non_max_validators to have claims pending.
+    And user confirm that new excluded validators are not in consensus:
+    |client/validators RPC endpoint|
+    Then user waits 16 blocks for claims and proofs to be completed.
+    And user checks each validator balance and claims.
+    Then all claims and proofs should have been intact, not affected by the change in any validator.
+
+Scenario: Make sure that max validator validation/param is working - max validators increased.
+    Given that the user it's running pocket's older version, RC-0.6.0
+    And user does `pocket version`
+    And user receives 
+    |RC-0.6.0|
+    When the network is set to start with 2 max_validators in the genesis.json
+    And those validators are staked.
+    And those validators have served relays and have pending claims, after 2 sessions.
+    Then user changes the max_validators params to 5:
+    |pocket-core gov change_param 4fd7bb7c7b62752cb29163ff455ae4d31326c2d3 0011 pocketcore/MaxValidators \“2\” 10000 false | 
+    When TX has been executed, then user waits 2 more sessions for the new max_validators and ex-non_max_validators to have claims pending.
+    And user confirm that new included validators are in consensus:
+    |client/validators RPC endpoint|
+    Then user waits 16 blocks for claims and proofs to be completed.
+    And user checks each validator balance and claims.
+    Then all claims and proofs should have been intact, not affected by the change in any validator.
+
+Scenario: Make sure that max validator validation/param is working - max validators decreased - node staking.
+    Given that the user it's running pocket's older version, RC-0.6.0
+    And user does `pocket version`
+    And user receives 
+    |RC-0.6.0|
+    When the network is set to start with 2 max_validators in the genesis.json
+    And those validators are staked.
+    And those validators have served relays and have pending claims, after 2 sessions.
+    Then user changes the max_validators params to 5:
+    |pocket-core gov change_param 4fd7bb7c7b62752cb29163ff455ae4d31326c2d3 0011 pocketcore/MaxValidators \“2\” 10000 false | 
+    When TX has been executed, then user waits 2 more sessions for the new max_validators and ex-non_max_validators to have claims pending.
+    And user confirm that new included validators are in consensus:
+    |client/validators RPC endpoint|
+    Then user waits 16 blocks for claims and proofs to be completed.
+    And user checks each validator balance and claims.
+    Then all claims and proofs should have been intact, not affected by the change in any validator.
+    And user creates a new validator in the pocket core CLI.
+    And user staked that validator.
+    Then after 1 block, the validator must be staked and receiving relays.
+
+Scenario: Make sure that max validator validation/param is working - max validators increased - node staking.
+    Given that the user it's running pocket's older version, RC-0.6.0
+    And user does `pocket version`
+    And user receives 
+    |RC-0.6.0|
+    When the network is set to start with 2 max_validators in the genesis.json
+    And those validators are staked.
+    And those validators have served relays and have pending claims, after 2 sessions.
+    Then user changes the max_validators params to 5:
+    |pocket-core gov change_param 4fd7bb7c7b62752cb29163ff455ae4d31326c2d3 0011 pocketcore/MaxValidators \“2\” 10000 false | 
+    When TX has been executed, then user waits 2 more sessions for the new max_validators and ex-non_max_validators to have claims pending.
+    And user confirm that new included validators are in consensus:
+    |client/validators RPC endpoint|
+    Then user waits 16 blocks for claims and proofs to be completed.
+    And user checks each validator balance and claims.
+    Then all claims and proofs should have been intact, not affected by the change in any validator.
+    And user creates a new validator in the pocket core CLI.
+    And user staked that validator.
+    Then after 1 block, the validator must be staked and receiving relays.
