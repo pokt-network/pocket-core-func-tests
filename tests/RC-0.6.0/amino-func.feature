@@ -1,133 +1,164 @@
-Scenario: Make sure that existing functionality it's still working
+Scenario: Make sure that existing functionality it's still working before upgrade
     Given that the user it's running pocket's latest version.
     And user does `pocket version`
     And user receives 
     |RC-0.6.0|
-    When user executes current pocket core func-test suite totally ignoring the --legacyCodec flag
+    And user has not passed the upgrade height, still.
+    When user executes current pocket core func-test suite totally ignoring the --legacyCodec flag for those who doesn't require it.
+    Then all results should be as expected, and encoding it's happening by default with Proto.
+
+Scenario: Make sure that existing functionality it's still working after upgrade
+    Given that the user it's running pocket's latest version.
+    And user does `pocket version`
+    And user receives 
+    |RC-0.6.0|
+    And user has passed the upgrade height, still.
+    When user executes current pocket core func-test suite totally ignoring the --legacyCodec flag for those who doesn't require it.
     Then all results should be as expected, and encoding it's happening by default with Proto.
 
 Scenario: Send a transaction using amino encoding
     Given that the user it's running pocket's latest version.
+    And user has passed the upgrade height.
     When user does `pocket accounts send-tx <fromAddr> <toAddr> <amount> <chainID> <fee> <memo> <legacyCodec=true>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Send a transaction using defaulted proto encoding
     Given that the user it's running pocket's latest version.
+    And user hasn't passed the upgrade height.
     When user does `pocket accounts send-tx <fromAddr> <toAddr> <amount> <chainID> <fee> <memo> <legacyCodec=false>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Build and sign a multisignature using amino encoding
     Given that the user it's running pocket's latest version.
+    And user has passed the upgrade height.
     When user does `pocket accounts build-MS-Tx  <signer-address> <json-message> <hex-pubkeys> <chainID> <fee> <legacyCodec=true>`
     Then user receives:
     |Transaction signed as follows: <multisignatureTx>|
 
 Scenario: Build and sign a multisignature using defaulted proto encoding
     Given that the user it's running pocket's latest version.
+    And user hasn't passed the upgrade height.
     When user does `pocket accounts build-MS-Tx  <signer-address> <json-message> <hex-pubkeys> <chainID> <fee> <legacyCodec=false>`
     Then user receives:
     |Transaction signed as follows: <multisignatureTx>|
 
 Scenario: Sign a multisignature with public keys using amino encoding
     Given that the user it's running pocket's latest version.
+    And user has passed the upgrade height.
     When user does `pocket accounts sign-ms-tx  <signer-address> <hex-stdtx> <hex-pubkeys> <chainID> <fee> <legacyCodec=true>`
     Then user receives:
     |Transaction signed as follows: <multisignatureTx>|
 
 Scenario: Sign a multisignature with public keys using defaulted proto encoding
     Given that the user it's running pocket's latest version.
+    And user hasn't passed the upgrade height.
     When user does `pocket accounts sign-ms-tx  <signer-address> <hex-stdtx> <hex-pubkeys> <chainID> <fee> <legacyCodec=false>`
     Then user receives:
     |Transaction signed as follows: <multisignatureTx>|
 
 Scenario: Sign a multisignature transaction object, result is hex encoded standard using amino encoding
     Given that the user it's running pocket's latest version.
+    And user has passed the upgrade height.
     When user does `pocket accounts sign-ms-next <signer-address> <hex-stdtx> <hex-pubkeys> <chainID> <fee> <legacyCodec=true>`
     Then user receives:
     |Transaction signed as follows: <multisignatureTx>|
 
 Scenario: Sign a multisignature transaction object, result is hex encoded standard using defaulted proto encoding
     Given that the user it's running pocket's latest version.
+    And user hasn't passed the upgrade height.
     When user does `pocket accounts sign-ms-next <signer-address> <hex-stdtx> <hex-pubkeys> <chainID> <fee> <legacyCodec=false>`
     Then user receives:
     |Transaction signed as follows: <multisignatureTx>|
 
 Scenario: Stake an APP, using amino encoding
     Given that the user it's running pocket's latest version.
+    And user has passed the upgrade height.
     When user does `pocket app stake <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=true>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Stake an APP, using defaulted proto encoding
     Given that the user it's running pocket's latest version.
+    And user hasn't passed the upgrade height.
     When user does `pocket app stake <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=false>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Unstake an APP, using amino encoding
     Given that the user it's running pocket's latest version.
+    And user has passed the upgrade height.
     When user does `pocket app unstake <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=true>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Unstake an APP, using defaulted proto encoding
     Given that the user it's running pocket's latest version.
+    And user hasn't passed the upgrade height.
     When user does `pocket app unstake <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=false>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Stake a node, using amino encoding
     Given that the user it's running pocket's latest version.
+    And user has passed the upgrade height.
     When user does `pocket node stake <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=true>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Stake a node, using defaulted proto encoding
     Given that the user it's running pocket's latest version.
+    And user hasn't passed the upgrade height.
     When user does `pocket node stake <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=false>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Unstake a node, using amino encoding
     Given that the user it's running pocket's latest version.
+    And user has passed the upgrade height.
     When user does `pocket node unstake <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=true>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Unstake a node, using defaulted proto encoding
     Given that the user it's running pocket's latest version.
+    And user hasn't passed the upgrade height.
     When user does `pocket node unstake <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=false>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Unjail a node, using amino encoding
     Given that the user it's running pocket's latest version.
+    And user has passed the upgrade height.
     When user does `pocket node unjail <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=true>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Unjail a node, using defaulted proto encoding
     Given that the user it's running pocket's latest version.
+    And user hasn't passed the upgrade height.
     When user does `pocket node unjail <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=false>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Unjail a node, using amino encoding
     Given that the user it's running pocket's latest version.
+    And user has passed the upgrade height.
     When user does `pocket node unjail <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=true>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Unjail a node, using defaulted proto encoding
     Given that the user it's running pocket's latest version.
+    And user hasn't passed the upgrade height.
     When user does `pocket node unjail <fromAddr> <amount> <chains> <chainID> <fee> <legacyCodec=false>`
     Then user receives:
     |Transaction submitted with hash: <Transaction Hash>|
 
 Scenario: Decodes a given transaction encoded in Amino/Proto base64 bytes, using amino encoding
     Given that the user it's running pocket's latest version.
+    And user has passed the upgrade height.
     When user does `pocket util decode-tx <tx> <legacyCodec=true>`
     Then user receives:
     |Type:           claim
@@ -140,6 +171,7 @@ Scenario: Decodes a given transaction encoded in Amino/Proto base64 bytes, using
 
 Scenario: Decodes a given transaction encoded in Amino/Proto base64 bytes, defaulted proto encoding
     Given that the user it's running pocket's latest version.
+    And user hasn't passed the upgrade height.
     When user does `pocket util decode-tx <tx> <legacyCodec=false>`
     Then user receives:
     |Type:           claim
