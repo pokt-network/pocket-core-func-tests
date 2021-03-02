@@ -6,11 +6,8 @@ Scenario: Make sure TXs are not affected after the upgrade
     And user executes a sample transaction in an specific block height. E.g. `pocket accounts send-raw-tx <fromAddr> <txBytes> [flags]`
     Then user received the TX hash successfully.
     And user waits for the next block to confirm that the TX has been made successfully. E.g. `pocket query tx <receivedTXHash>`
-    When user proceeds to upgrade to the latest RC-0.6.0 version.
-    And user does `pocket version`
-    And user receives 
-    |RC-0.6.0|
-    When user waits for the next block to confirm that the TX has been made successfully. E.g. `pocket query tx <receivedTXHash>`
+    When upgradeHeight TX happens.
+    And user waits for the next block to confirm that the TX has been made successfully. E.g. `pocket query tx <receivedTXHash>`
     Then user receives the transaction details as originated before the upgrade.
 
 Scenario: Make sure claims are not affected after the upgrade
@@ -24,11 +21,8 @@ Scenario: Make sure claims are not affected after the upgrade
     And user receives the proof of the pending claims.
     Then user confirms its account's balance by doing `pocket query balance <accAddr> <heightOfPreviousVersion> [flags]`
     And confirms its actual balance before updating.
-    Then user upgrades to pocket version RC-0.6.0
-    And user does `pocket version`
-    And user receives 
-    |RC-0.6.0|
-    When user waits for the next block.
+    When upgradeHeight TX happens.
+    And user waits for the next block.
     Then user checks in the block information logs, that claims are being paid to his address. 
     And user executes `pocket query node-claims`
     Then user notices that there are no pending claims.
@@ -46,11 +40,8 @@ Scenario: Make sure claims are not affected after the upgrade, claims not presen
     And user receives the proof of the pending claims.
     Then user confirms its account's balance by doing `pocket query balance <accAddr> <heightOfPreviousVersion> [flags]`
     And confirms its actual balance before updating.
-    Then user upgrades to pocket version RC-0.6.0
-    And user does `pocket version`
-    And user receives 
-    |RC-0.6.0|
-    When user waits for the next block.
+    When upgradeHeight TX happens.
+    And user waits for the next block.
     Then user checks in the block information logs, that claims are missing. 
     When user queries the relay TX, `pocket query tx <relayTxHash>`
     Then user notices that the relay transaction has not been successful and the relay has stopped.
