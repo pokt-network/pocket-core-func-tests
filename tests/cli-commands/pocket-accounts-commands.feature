@@ -25,6 +25,28 @@ Scenario: Pocket Accounts commands
         update-passphrase   Update account passphrase
     }
 
+Scenario: To build and sign a multisic tx
+    Given that the user has Pocket Network latest version installed.
+    And wants to create an account
+    When typing "pocket accounts build-MS-Tx 4fd7bb7c7b62752cb29163ff455ae4d31326c2d3 "{\"type\":\"pos\/Send\",\"value\":{\"from_address\":\"154fa37d8b9c6b1343620fc02abcc3bb126cfaba\",\"to_address\":\"448c23cd4f025ae76196c2b8dc5387990190474c\",\"amount\":\"1\"}}" 0b7477e98009ce1f8815a05fe5d01bcd9f14295a8d2a3e72bfd5cd215692d86d testnet 100000 true"
+    Then user should be prompted to enter its passphrase: "Enter Passphrase: "
+    When passphrase is provided...
+    Then user received its account details after the signed TX message:
+    | Multisig transaction:
+cb01db0b170d0a33a5e344a60a14154fa37d8b9c6b1343620fc02abcc3bb126cfaba1214448c23cd4f025ae76196c2b8dc5387990190474c1a0131120f0a0575706f6b7412063130303030301a750a2bf325b8ad0a259d544774200b7477e98009ce1f8815a05fe5d01bcd9f14295a8d2a3e72bfd5cd215692d86d1246b2f515f90a403d35224e02e3363410a1d767ee1b3a6e7de7cff5d1e767cb62ca5cfe0e2a8b7a2b39ac3aacd37dbe493e375142a9d979f45bebf2fdb9f17d66a2274469d7080328b99ca4ecb1c9a5d671 |
+
+Scenario: To create a multisig public key
+    Given that the user has Pocket Network latest version installed.
+    And wants to create an account
+    When typing "pocket-core accounts create-multi-public 0b7477e98009ce1f8815a05fe5d01bcd9f14295a8d2a3e72bfd5cd215692d86d"
+    Then user should be prompted to enter its passphrase: "Enter Passphrase: "
+    When passphrase is provided...
+    Then user received its account details after the signed TX message:
+    | Sucessfully generated Multisig Public Key:
+    f325b8ad0a259d544774200b7477e98009ce1f8815a05fe5d01bcd9f14295a8d2a3e72bfd5cd215692d86d
+    With Address:
+    FD9CB5B2C89ACA48E502AADD48F88E6EC06D1543|
+
 Scenario: To create a new account
     Given that the user has Pocket Network latest version installed.
     And wants to create an account
@@ -138,6 +160,13 @@ Scenario: To export an existing plaintext private key, providing incomplete comm
 
         accepts 1 arg(s), received 0
         |
+
+Scenario: To get an account's validator 
+    Given that the user has Pocket Network latest version installed.
+    And wants to import keypairs using armor
+    When typing "pocket accounts get-validator <address> [flags]".
+    Then user should see a success message as follows: 
+    |Validator <address>|
 
 Scenario: To import a keypairs using armor
     Given that the user has Pocket Network latest version installed.
