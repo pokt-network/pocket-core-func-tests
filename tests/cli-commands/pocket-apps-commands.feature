@@ -159,3 +159,71 @@ Scenario: To unstake an APP in the network, incomplete command
         --tmRPCPort string          the port for tendermint rpc (default "26657")
 
     accepts 3 arg(s), received 0|
+
+Scenario: To be able to edit an stake amount from an APP
+    Given that the user has Pocket Network latest version installed.
+    And wants to edit or modify his current stake within the network
+    When typing "pocket apps stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is kept the same.
+    Then user should be prompted a success message/transaction:
+    | pocket apps stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the node. 
+    | pocket query app <AppAddress> | 
+    Then user finds the new staking details there.
+
+Scenario: To prevent a user of staking less amount of relays
+    Given that the user has Pocket Network latest version installed.
+    And wants to edit or modify his current stake within the network
+    When typing "pocket apps stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is less than it was before.
+    Then user should be prompted a success message/transaction:
+    | pocket apps stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 10000 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the APP. 
+    | pocket query APP <APPAddress> | 
+    Then user finds the new staking details are not there, and the old ones are kept.
+
+Scenario: To verify that the APP which edit stake have happened loses the servicing node
+    Given that the user has Pocket Network latest version installed.
+    And a given APP it's in a current session
+    And wants to edit or modify his current stake within the network
+    When typing "pocket apps stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is kept the same, but the chainID is different than the ones in the current session
+    Then user should be prompted a success message/transaction:
+    | pocket apps stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the APP. 
+    | pocket query APP <APPAddress> | 
+    Then user finds the new staking details there.
+    And when v1/dispatch is queried, the nodes are not servicing the APP anymore.
+
+Scenario: To verify that a node gets paid for APP staking changes mid section
+    Given that the user has Pocket Network latest version installed.
+    And wants to edit or modify his current stake within the network
+    When typing "pocket apps stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is kept the same, but the current dispatching chainID is changed.
+    And the APP is within a session for X chainID.
+    Then user should be prompted a success message/transaction:
+    | pocket apps stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the APP. 
+    | pocket query APP <APPAddress> | 
+    Then user finds the new staking details there.
+    And when v1/dispatch is queried, the nodes are not servicing the APP anymore.
+    And nodes received the claims for the serviced relays up to the chaning point.
+
+Scenario: To verify that the node relays increments if APP Max Relays increases
+    Given that the user has Pocket Network latest version installed.
+    And a given APP it's in a current session
+    And wants to edit or modify his current stake within the network
+    When typing "pocket apps stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount increased.
+    Then user should be prompted a success message/transaction:
+    | pocket apps stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the APP. 
+    | pocket query APP <APPAddress> | 
+    Then user finds the new staking details there.
+    And when v1/dispatch is queried, the node is still within the session.
+    And when receiving rewards, the same receives the proportion of the increment.

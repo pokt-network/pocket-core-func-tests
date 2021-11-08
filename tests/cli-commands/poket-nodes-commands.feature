@@ -158,3 +158,70 @@ Scenario: To unstake a node in the network, incomplete command
         --tmRPCPort string          the port for tendermint rpc (default "26657")
 
     accepts 3 arg(s), received 0|
+
+Scenario: To be able to edit an stake amount from a node
+    Given that the user has Pocket Network latest version installed.
+    And wants to edit or modify his current stake within the network
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is kept the same.
+    Then user should be prompted a success message/transaction:
+    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the node. 
+    | pocket query node <NodeAddress> | 
+    Then user finds the new staking details there.
+
+Scenario: To prevent a user of staking less amount
+    Given that the user has Pocket Network latest version installed.
+    And wants to edit or modify his current stake within the network
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is less than it was before.
+    Then user should be prompted a success message/transaction:
+    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 10000 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the node. 
+    | pocket query node <NodeAddress> | 
+    Then user finds the new staking details are not there, and the old ones are kept.
+
+Scenario: To verify that the node which edit stake have happened it's not dispatching anymore
+    Given that the user has Pocket Network latest version installed.
+    And a given node it's in a current session
+    And wants to edit or modify his current stake within the network
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is kept the same, but the chainID is different than the ones in the current session
+    Then user should be prompted a success message/transaction:
+    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the node. 
+    | pocket query node <NodeAddress> | 
+    Then user finds the new staking details there.
+    And when v1/dispatch is queried, the node is not participating anymore after the session ends for that chain.
+
+Scenario: To verify that a node doesn't get paid when removing a current session chain from the current list.
+    Given that the user has Pocket Network latest version installed.
+    And wants to edit or modify his current stake within the network
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is kept the same, but the current dispatching chainID is changed.
+    And the node is within a session for X chainID.
+    Then user should be prompted a success message/transaction:
+    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the node. 
+    | pocket query node <NodeAddress> | 
+    Then user finds the new staking details there.
+    And the claims for the old chainID should never arrive.
+    | pocket query node-claim <nodeAddress> -> Should return an empty object. |
+
+Scenario: To verify that the node which edit stake have happened reflects ServiceURL changing right away
+    Given that the user has Pocket Network latest version installed.
+    And a given node it's in a current session
+    And wants to edit or modify his current stake within the network
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is kept the same, but service URL have changed
+    Then user should be prompted a success message/transaction:
+    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the node. 
+    | pocket query node <NodeAddress> | 
+    Then user finds the new staking details there.
+    And when v1/dispatch is queried, the node is showing the new serviceURL right away. (Next block)

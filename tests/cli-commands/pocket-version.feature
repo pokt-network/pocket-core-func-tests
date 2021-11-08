@@ -3,4 +3,4 @@ Scenario: User wants to see the pocket version
     And wants to see the pocket actual version
     When user types in "pocket version"
     Then user should see the actual version installed. Examples:
-    | Version: RC-0.5.2.9 |
+    | Version: RC-0.6.4 |
