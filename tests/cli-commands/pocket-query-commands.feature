@@ -29,6 +29,7 @@ Scenario: To show existing commands within the pocket query section
     param              Get a parameter with the given key
     params             Gets all parameters
     pocket-params      Gets pocket parameters
+    signing-info       Gets validator signing info
     supply             Returns
     supported-networks Gets pocket supported networks
     tx                 Get the transaction by the hash
@@ -514,7 +515,29 @@ Scenario: To query the list of pocketcore params
     Given that the user has Pocket Network latest version installed.
     And wants to query the list of apps
     When typing "pocket query pocket-params [flags]"
+    Then user should be prompted succeed message see the node's signing information.
+    |pocket query signing-info 1467d02c1438f7b9563a7017758eeeb1b1b39c98|
+    |{
+        "page": 1,
+        "result": [
+            {
+                "address": "1467d02c1438f7b9563a7017758eeeb1b1b39c98",
+                "index_offset": 4,
+                "jailed_blocks_counter": 0,
+                "jailed_until": "0001-01-01T00:00:00Z",
+                "missed_blocks_counter": 0,
+                "start_height": 41118
+            }
+        ],
+        "total_pages": 1
+    }|
+
+Scenario: To query a specific node's signing info 
+    Given that the user has Pocket Network latest version installed.
+    And wants to query the list of apps
+    When typing "pocket query signing-info <address> [<height>] [flags]"
     Then user should be prompted succeed message see the pocketcore params list.
+
 
 Scenario: To get supplies
     Given that the user has Pocket Network latest version installed.
