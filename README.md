@@ -4,9 +4,8 @@
   </a>
 </div>
 
-# Project Title
+# Pocket Core Regression Test Suite
 
-One sentence summary of project
 <div>
   <a  href="https://godoc.org/github.com/pokt-network/pocket-core"><img src="https://img.shields.io/badge/godoc-reference-blue.svg"/></a>
   <a  href="https://goreportcard.com/report/github.com/pokt-network/pocket-core"><img src="https://goreportcard.com/badge/github.com/pokt-network/pocket-core"/></a>
@@ -26,51 +25,7 @@ One sentence summary of project
     <a href="https://github.com/pokt-network/pocket-core/issues"><img src="https://img.shields.io/github/issues-closed/pokt-network/pocket-core.svg"/></a>
 </div>
 
-Full Description
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-### Example usage
-
-```
-The most basic example of how you would use the project
-```
-
-### Installation
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the step
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting data out of the system or using it for a demo
-
-## Documentation
-
-Full usage and options or a link to the docs.pokt.network site
-
-## Running the tests
-
-Explain how to run the automated tests
-
-```
-Give an example
-```
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://github.com/pokt-network/repo-template/blob/master/CONTRIBUTING.md) for details on contributions and the process of submitting pull requests.
+The Pocket Core Regression Test suite contains all the currently defined regression testing scenarios.
 
 ## Support & Contact
 
