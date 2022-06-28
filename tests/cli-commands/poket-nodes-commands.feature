@@ -1,4 +1,4 @@
-Scenario: To show existing commands within the pocket nodes section
+Scenario: 119 To show existing commands within the pocket nodes section
     Given that the user has Pocket Network latest version installed.
     And wants to see the available actions for pocket nodes
     When typing "pocket nodes".
@@ -26,7 +26,7 @@ Scenario: To show existing commands within the pocket nodes section
         --seeds string              a comma separated list of PeerURLs: '<ID>@<IP>:<PORT>,<ID2>@<IP2>:<PORT>...<IDn>@<IPn>:<PORT>'
     Use "pocket nodes [command] --help" for more information about a command.|
 
-Scenario: To stake an node in the network
+Scenario: 120 To stake an node in the network
     Given that the user has Pocket Network latest version installed.
     Given a minimum stake of 100000
     And wants to stake his node into the network
@@ -34,14 +34,14 @@ Scenario: To stake an node in the network
       | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 testnet 100000 |
     Then user should be shown a success message
 
-Scenario: To stake an node in the network, wrong address
+Scenario: 121 To stake an node in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to stake his node into the network
     When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>", with wrong address
       | pocket nodes stake "foobar" 100000 0022 testnet 100000 |
     Then user should be shown a failure message
 
-Scenario: To stake a nodes in the network, amount lower than minimum stake
+Scenario: 122 To stake a nodes in the network, amount lower than minimum stake
     Given that the user has Pocket Network latest version installed.
     Given a param pos/StakeMinimum of 100000
     And wants to stake his node into the network
@@ -49,14 +49,14 @@ Scenario: To stake a nodes in the network, amount lower than minimum stake
     | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 0 0022 testnet 100000 |
     Then user should be shown a failure message
 
-Scenario: To stake a nodes in the network, wrong serviceURI
+Scenario: 123 To stake a nodes in the network, wrong serviceURI
     Given that the user has Pocket Network latest version installed.
     And wants to stake his node into the network
     When typing "pocket nodes stake <fromAddr> <amount> <serviceURI> <chains> <fees>", with non registered chains
     | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 100000 0022 "foobar" testnet 100000 |
     Then user should be shown a failure message
 
-Scenario: To stake a node in the network, incomplete command
+Scenario: 124 To stake a node in the network, incomplete command
     Given that the user has Pocket Network latest version installed.
     And wants to stake his node into the network
     When typing "pocket nodes stake <fromAddr>"
@@ -83,21 +83,21 @@ Scenario: To stake a node in the network, incomplete command
 
     accepts 6 arg(s), received 0|
 
-Scenario: To unjail a node in the network
+Scenario: 125 To unjail a node in the network
     Given that the user has Pocket Network latest version installed.
     And wants to unjail his node into the network
     When typing "pocket nodes unjail <fromAddr> <chainID> <fees> [flags]"
     | pocket nodes unjail abf1df709a0cc486ac6db216ba9ed260e5597ba9 testnet 100000 |
     Then user should be shown a success message
 
-Scenario: To unjail a node in the network, wrong address
+Scenario: 126 To unjail a node in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to unjail his node into the network
     When typing "pocket nodes unjail <fromAddr> <chainID> <fees> [flags]", with wrong address
     | pocket nodes unjail foobar testnet 100000 |
     Then user should be shown a failure message
 
-Scenario: To unjail a node in the network, incomplete command
+Scenario: 128 To unjail a node in the network, incomplete command
     Given that the user has Pocket Network latest version installed.
     And wants to unjail his node into the network
     When typing "pocket nodes unjail "
@@ -121,21 +121,21 @@ Scenario: To unjail a node in the network, incomplete command
 
     accepts 3 arg(s), received 0|
 
-Scenario: To unstake a node in the network
+Scenario: 129 To unstake a node in the network
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his node into the network
     When typing "pocket nodes unstake <fromAddr> <chainID> <fees> [flags]"
     | pocket nodes unstake abf1df709a0cc486ac6db216ba9ed260e5597ba9 testnet 100000 |
     Then user should be shown a success message
 
-Scenario: To unstake a node in the network, wrong address
+Scenario: 130 To unstake a node in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his node into the network
     When typing "pocket nodes unstake <fromAddr> <chainID> <fees> [flags]", with wrong address
     | pocket nodes unstake foobar testnet 100000 |
     Then user should be shown a failure message
 
-Scenario: To unstake a node in the network, incomplete command
+Scenario: 131 To unstake a node in the network, incomplete command
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his node into the network
     When typing "pocket nodes unstake "
@@ -159,7 +159,7 @@ Scenario: To unstake a node in the network, incomplete command
 
     accepts 3 arg(s), received 0|
 
-Scenario: To be able to edit an stake amount from a node
+Scenario: -- To be able to edit an stake amount from a node
     Given that the user has Pocket Network latest version installed.
     And wants to edit or modify his current stake within the network
     When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
@@ -171,7 +171,7 @@ Scenario: To be able to edit an stake amount from a node
     | pocket query node <NodeAddress> | 
     Then user finds the new staking details there.
 
-Scenario: To prevent a user of staking less amount
+Scenario: -- 00x To prevent a user of staking less amount
     Given that the user has Pocket Network latest version installed.
     And wants to edit or modify his current stake within the network
     When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
@@ -183,7 +183,7 @@ Scenario: To prevent a user of staking less amount
     | pocket query node <NodeAddress> | 
     Then user finds the new staking details are not there, and the old ones are kept.
 
-Scenario: To verify that the node which edit stake have happened it's not dispatching anymore
+Scenario: -- To verify that the node which edit stake have happened it's not dispatching anymore
     Given that the user has Pocket Network latest version installed.
     And a given node it's in a current session
     And wants to edit or modify his current stake within the network
@@ -197,7 +197,7 @@ Scenario: To verify that the node which edit stake have happened it's not dispat
     Then user finds the new staking details there.
     And when v1/dispatch is queried, the node is not participating anymore after the session ends for that chain.
 
-Scenario: To verify that a node doesn't get paid when removing a current session chain from the current list.
+Scenario: -- To verify that a node doesn't get paid when removing a current session chain from the current list.
     Given that the user has Pocket Network latest version installed.
     And wants to edit or modify his current stake within the network
     When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
@@ -212,7 +212,7 @@ Scenario: To verify that a node doesn't get paid when removing a current session
     And the claims for the old chainID should never arrive.
     | pocket query node-claim <nodeAddress> -> Should return an empty object. |
 
-Scenario: To verify that the node which edit stake have happened reflects ServiceURL changing right away
+Scenario: -- To verify that the node which edit stake have happened reflects ServiceURL changing right away
     Given that the user has Pocket Network latest version installed.
     And a given node it's in a current session
     And wants to edit or modify his current stake within the network
