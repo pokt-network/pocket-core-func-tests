@@ -1,4 +1,4 @@
-Scenario: Pocket Accounts commands
+Scenario: 001 Pocket Accounts commands
     Given that the user has Pocket Network latest version installed.
     And from his terminal, types in "pocket accounts"
     When hitting enter
@@ -25,7 +25,7 @@ Scenario: Pocket Accounts commands
         update-passphrase   Update account passphrase
     }
 
-Scenario: To build and sign a multisic tx
+Scenario: 002 To build and sign a multisic tx
     Given that the user has Pocket Network latest version installed.
     And wants to create an account
     When typing "pocket accounts build-MS-Tx 4fd7bb7c7b62752cb29163ff455ae4d31326c2d3 "{\"type\":\"pos\/Send\",\"value\":{\"from_address\":\"154fa37d8b9c6b1343620fc02abcc3bb126cfaba\",\"to_address\":\"448c23cd4f025ae76196c2b8dc5387990190474c\",\"amount\":\"1\"}}" 0b7477e98009ce1f8815a05fe5d01bcd9f14295a8d2a3e72bfd5cd215692d86d testnet 100000 true"
@@ -35,7 +35,7 @@ Scenario: To build and sign a multisic tx
     | Multisig transaction:
 cb01db0b170d0a33a5e344a60a14154fa37d8b9c6b1343620fc02abcc3bb126cfaba1214448c23cd4f025ae76196c2b8dc5387990190474c1a0131120f0a0575706f6b7412063130303030301a750a2bf325b8ad0a259d544774200b7477e98009ce1f8815a05fe5d01bcd9f14295a8d2a3e72bfd5cd215692d86d1246b2f515f90a403d35224e02e3363410a1d767ee1b3a6e7de7cff5d1e767cb62ca5cfe0e2a8b7a2b39ac3aacd37dbe493e375142a9d979f45bebf2fdb9f17d66a2274469d7080328b99ca4ecb1c9a5d671 |
 
-Scenario: To create a multisig public key
+Scenario: 003 To create a multisig public key
     Given that the user has Pocket Network latest version installed.
     And wants to create an account
     When typing "pocket-core accounts create-multi-public 0b7477e98009ce1f8815a05fe5d01bcd9f14295a8d2a3e72bfd5cd215692d86d"
@@ -47,7 +47,7 @@ Scenario: To create a multisig public key
     With Address:
     FD9CB5B2C89ACA48E502AADD48F88E6EC06D1543|
 
-Scenario: To create a new account
+Scenario: 004 To create a new account
     Given that the user has Pocket Network latest version installed.
     And wants to create an account
     When typing "pocket accounts create"
@@ -56,7 +56,7 @@ Scenario: To create a new account
     Then user received its account details after the "Account generated successfully:" message:
     | Address: 72e1baa0dea9658d9d2fa5929c99e83c2a532552. |
 
-Scenario: To delete an existing account
+Scenario: 005 To delete an existing account
     Given that the user has Pocket Network latest version installed.
     And wants to delete an account
     When typing "pocket accounts delete <address>". Examples:
@@ -64,7 +64,7 @@ Scenario: To delete an existing account
     Then user should be prompted to enter its existing passphrase: "Enter Passphrase: "
     And noticed by the following notification message: "Account deleted successfully"
 
-Scenario: To delete an existing account by providing wrong command format
+Scenario: 006 To delete an existing account by providing wrong command format
     Given that the user has Pocket Network latest version installed.
     And wants to delete an account
     When typing "pocket accounts delete". Examples:
@@ -72,7 +72,7 @@ Scenario: To delete an existing account by providing wrong command format
     Then user should be prompted to view an error validation message (not existing at the moment)
     And showed the right command as a suggestion.
 
-Scenario: To export an existing account
+Scenario: 007 To export an existing account
     Given that the user has Pocket Network latest version installed.
     And wants to import an existing account
     When typing "pocket accounts export <address> [flags]". Examples:
@@ -81,7 +81,7 @@ Scenario: To export an existing account
     And user should be prompted to enter the Encrypt passphrase: "Enter encrypt Passphrase"
     And showed the correct successfull message.
 
-Scenario: To export an existing account, and failing the passphrase
+Scenario: 008 To export an existing account, and failing the passphrase
     Given that the user has Pocket Network latest version installed.
     And wants to import an existing account
     When typing "pocket accounts export <address> [flags]". Examples:
@@ -90,7 +90,7 @@ Scenario: To export an existing account, and failing the passphrase
     And user should be prompted to enter the Encrypt passphrase wrong: "Enter encrypt Passphrase"
     And showed the following error message: "Ciphertext decryption failed"
 
-Scenario: To export an existing account, not provide the address
+Scenario: 009 To export an existing account, not provide the address
     Given that the user has Pocket Network latest version installed.
     And wants to import an existing account
     When typing "pocket accounts export <address> [flags]". Examples:
@@ -118,7 +118,7 @@ Scenario: To export an existing account, not provide the address
     | pocket accounts export 72e1baa0dea9658d9d2fa5929c99e83c2a532552 |
     Then user should be showed the following error: "Address Error encoding/hex: invalid byte: U+0077"
 
-Scenario: To export an existing plaintext private key
+Scenario: 010 To export an existing plaintext private key
     Given that the user has Pocket Network latest version installed.
     And wants to import an existing account
     When typing "pocket accounts export-raw <address> [flags]". Examples:
@@ -127,7 +127,7 @@ Scenario: To export an existing plaintext private key
     And showed the correct successfull message. Examples:
     | Exported Raw Private Key: 285208ad8e505dd5672dc03b0c005efe78d97dff48c5b4811ca7582cc04fb98c57692033055cbdd1a3308a6364b24121d32d7536bb51660843ddfd96c879c2ba  |
 
-Scenario: To export an existing plaintext private key, providing wrong address
+Scenario: 011 To export an existing plaintext private key, providing wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to import an existing account
     When typing "pocket accounts export-raw <address> [flags]". Examples:
@@ -135,7 +135,7 @@ Scenario: To export an existing plaintext private key, providing wrong address
     Then user should be prompted an error message, such as... Examples:
     | Address Error encoding/hex: invalid byte: U+0077  |
 
-Scenario: To export an existing plaintext private key, providing incomplete command
+Scenario: 012 To export an existing plaintext private key, providing incomplete command
     Given that the user has Pocket Network latest version installed.
     And wants to import an existing account
     When typing "pocket accounts export-raw <address> [flags]". Examples:
@@ -161,20 +161,20 @@ Scenario: To export an existing plaintext private key, providing incomplete comm
         accepts 1 arg(s), received 0
         |
 
-Scenario: To get an account's validator 
+Scenario: 013 To get an account's validator 
     Given that the user has Pocket Network latest version installed.
     And wants to import keypairs using armor
     When typing "pocket accounts get-validator <address> [flags]".
     Then user should see a success message as follows: 
     |Validator <address>|
 
-Scenario: To import a keypairs using armor
+Scenario: 014 To import a keypairs using armor
     Given that the user has Pocket Network latest version installed.
     And wants to import keypairs using armor
     When typing "pocket accounts import-armored <armored> [flags]".
     Then user should see a success message as follows: "Keypar value imported successully".
 
-Scenario: To import a keypairs using armor, providing incomplete command
+Scenario: 015 To import a keypairs using armor, providing incomplete command
     Given that the user has Pocket Network latest version installed.
     And wants to import keypairs using armor
     When typing "pocket accounts import-armored".
@@ -202,7 +202,7 @@ Scenario: To import a keypairs using armor, providing incomplete command
     When typing "pocket accounts import-raw <private-key-hex> [flags]".
     Then user should see a success message as follows: "Accout imported successfully".
 
-Scenario: To import raw private key, providing incomplete command
+Scenario: 016 To import raw private key, providing incomplete command
     Given that the user has Pocket Network latest version installed.
     And wants to import keypairs using armor
     When typing "pocket accounts import-raw".
@@ -222,20 +222,20 @@ Scenario: To import raw private key, providing incomplete command
             --tmRPCPort string          the port for tendermint rpc (default "26657")
         |
 
-Scenario: To see the list of existing accounts
+Scenario: 017 To see the list of existing accounts
     Given that the user has Pocket Network latest version installed.
     And wants to the list of existing addresses or accounts
     When typing "pocket accounts list".
     Then user should see a the existing accounts, having the consideration that first position is (0). Examples:
     | (0) 031ccd0821df95cd80b78182c04937b45456b08f|
 
-Scenario: To send raw transaction from signed bytes
+Scenario: 018 To send raw transaction from signed bytes
     Given that the user has Pocket Network latest version installed.
     And wants to the send a raw transaction from signed bytes
     When typing "pocket accounts send-raw-tx <fromAddr> <txBytes> [flags]".
     Then user should see a successfull message for the sent Tx.
 
-Scenario: To send raw transaction from signed bytes, with incomplete command
+Scenario: 019 To send raw transaction from signed bytes, with incomplete command
     Given that the user has Pocket Network latest version installed.
     And wants to the send a raw transaction from signed bytes
     When typing "pocket accounts send-raw-tx <fromAddr>"
@@ -259,13 +259,13 @@ Scenario: To send raw transaction from signed bytes, with incomplete command
 
     accepts 2 arg(s), received 0 |
 
-Scenario: To send a POKT tx to a specific address
+Scenario: 020 To send a POKT tx to a specific address
     Given that the user has Pocket Network latest version installed.
     And wants to the send a specific quantity of POKT from address to address
     When typing "pocket accounts send-tx <fromAddr> <toAddr> <amount> [flags]".
     Then user should see a successfull message for the sent Tx.
 
-Scenario: To send a POKT tx to a specific address, missing commands
+Scenario: 021 To send a POKT tx to a specific address, missing commands
     Given that the user has Pocket Network latest version installed.
     And wants to the send a specific quantity of POKT from address to address
     When typing "pocket accounts send-tx <fromAddr>".
@@ -294,7 +294,7 @@ Global Flags:
 
 accepts 3 arg(s), received 0 |
 
-Scenario: To see the public key for an address
+Scenario: 022 To see the public key for an address
     Given that the user has Pocket Network latest version installed.
     And wants to see an addresses's public key
     When typing "pocket accounts show <address>".
@@ -302,7 +302,7 @@ Scenario: To see the public key for an address
     | Address:	031ccd0821df95cd80b78182c04937b45456b08f
     Public Key:	57692033055cbdd1a3308a6364b24121d32d7536bb51660843ddfd96c879c2ba | 
 
-Scenario: To see the public key for an address, incomplete command.
+Scenario: 023 To see the public key for an address, incomplete command.
     Given that the user has Pocket Network latest version installed.
     And wants to see an addresses's public key
     When typing "pocket accounts show".
@@ -331,13 +331,13 @@ Scenario: To see the public key for an address, incomplete command.
     Address:	031ccd0821df95cd80b78182c04937b45456b08f
     Public Key:	57692033055cbdd1a3308a6364b24121d32d7536bb51660843ddfd96c879c2ba |
 
-Scenario: To sign a message with an account
+Scenario: 024 To sign a message with an account
     Given that the user has Pocket Network latest version installed.
     And wants to sing a message for an specific account
     When typing "pocket accounts sign <address> <msg>".
     Then user should see a successfull message.
 
-Scenario: To sign a message with an account, missing commands
+Scenario: 025 To sign a message with an account, missing commands
     Given that the user has Pocket Network latest version installed.
     And wants to sing a message for an specific account
     When typing "pocket accounts sign <address>".
@@ -361,7 +361,7 @@ Global Flags:
       --tmPeersPort string        the port for tendermint p2p (default "26656")
       --tmRPCPort string          the port for tendermint rpc (default "26657")|
 
-Scenario: To sign a message with an account, incorrect text sintax
+Scenario: 026 To sign a message with an account, incorrect text sintax
     Given that the user has Pocket Network latest version installed.
     And wants to sing a message for an specific account
     When typing "pocket accounts sign <address> "testing".
@@ -370,7 +370,7 @@ Scenario: To sign a message with an account, incorrect text sintax
     | encoding/hex: invalid byte: U+0054 'T' |
     | encoding/hex: invalid byte: U+0054 'T' |
 
-Scenario: To update existing account passphrase
+Scenario: 027 To update existing account passphrase
     Given that the user has Pocket Network latest version installed.
     And wants to update his, or any other addresses's passphrase
     When typing "pocket accounts update-passphrase <address>".
@@ -378,7 +378,7 @@ Scenario: To update existing account passphrase
     And user should be prompted to input the new passphrase. Examples:
     | Ciphertext decryption passed |
 
-Scenario: To update existing account passphrase, miss any of the passphrases
+Scenario: 028 To update existing account passphrase, miss any of the passphrases
     Given that the user has Pocket Network latest version installed.
     And wants to update his, or any other addresses's passphrase
     When typing "pocket accounts update-passphrase <address>".
@@ -387,7 +387,7 @@ Scenario: To update existing account passphrase, miss any of the passphrases
     And user should be showed a notification message that passwords doesn't match or are wrong. Examples:
     | Ciphertext decryption failed |
 
-Scenario: To update existing account passphrase, missing address
+Scenario: 029 To update existing account passphrase, missing address
     Given that the user has Pocket Network latest version installed.
     And wants to update his, or any other addresses's passphrase
     When typing "pocket accounts update-passphrase".
