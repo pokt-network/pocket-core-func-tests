@@ -1,4 +1,4 @@
-Scenario: To show existing commands within the pocket app section
+Scenario: 032 To show existing commands within the pocket app section
     Given that the user has Pocket Network latest version installed.
     And wants to see the available actions for pocket apps
     When typing "pocket apps".
@@ -27,27 +27,27 @@ Scenario: To show existing commands within the pocket app section
 
     Use "pocket apps [command] --help" for more information about a command.|
 
-Scenario: To create an AAT
+Scenario: 033 To create an AAT
     Given that the user has Pocket Network latest version installed.
     And wants to create an application authentication token
     When typing "pocket apps create-aat <appAddr> <clientPubKey> [flags]"
     Then user should be prompted succeed message and the aat creation.
 
-Scenario: To create an AAT, with wrong APPaddress
+Scenario: 034 To create an AAT, with wrong APPaddress
     Given that the user has Pocket Network latest version installed.
     And wants to create an application authentication token
     When typing "pocket apps create-aat <appAddr> <clientPubKey> [flags]", being address wrong one
     Then user should be prompted an error message, such as. Examples:
     | Address Error encoding/hex: invalid byte: U+006C 'l'|
 
-Scenario: To create an AAT, with wrong clientPubKey
+Scenario: 035 To create an AAT, with wrong clientPubKey
     Given that the user has Pocket Network latest version installed.
     And wants to create an application authentication token
     When typing "pocket apps create-aat <appAddr> <clientPubKey> [flags]", being address wrong one
     Then user should be prompted an error message, such as. Examples:
     | clientPubKey Error encoding/hex: invalid byte: U+006C 'l'|
 
-Scenario: To create an AAT, incomplete command
+Scenario: 036 To create an AAT, incomplete command
     Given that the user has Pocket Network latest version installed.
     And wants to create an application authentication token
     When typing "pocket apps create-aat <appAddr>"
@@ -75,31 +75,31 @@ Scenario: To create an AAT, incomplete command
     Emanuels-MacBook-Pro:~ emanuelmedrano$ pocket apps create-aat efeljfhelfhe34981234 dfadsf;kadsjhfjah383
     Address Error encoding/hex: invalid byte: U+006C 'l'-bash: kadsjhfjah383: command not found|
 
-Scenario: To stake an APP in the network
+Scenario: 037 To stake an APP in the network
     Given that the user has Pocket Network latest version installed.
     And wants to stake his APP into the network
     When typing "pocket apps stake <fromAddr> <amount> <chains> <chainID> <fees> [flags]"
     Then user should be shown a success message
 
-Scenario: To stake an APP in the network, wrong address
+Scenario: 038 To stake an APP in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to stake his APP into the network
     When typing "pocket apps stake <fromAddr> <amount> <chains> <chainID> <fees> [flags]", with wrong address
     Then user should be shown a failure message
 
-Scenario: To stake an APP in the network, zero as amount
+Scenario: 040 To stake an APP in the network, zero as amount
     Given that the user has Pocket Network latest version installed.
     And wants to stake his APP into the network
     When typing "pocket apps stake <fromAddr> <amount> <chains> <chainID> <fees> [flags]", with zero as an amount
     Then user should be shown a failure message 
 
-Scenario: To stake an APP in the network, wrong chains
+Scenario: 041 To stake an APP in the network, wrong chains
     Given that the user has Pocket Network latest version installed.
     And wants to stake his APP into the network
     When typing "pocket apps stake <fromAddr> <amount> <chains> <chainID> <fees> [flags]", with wrong chains
     Then user should be shown a failure message
 
-Scenario: To stake an APP in the network, incomplete command
+Scenario: 042 To stake an APP in the network, incomplete command
     Given that the user has Pocket Network latest version installed.
     And wants to stake his APP into the network
     When typing "pocket apps stake <fromAddr>"
@@ -124,19 +124,19 @@ Scenario: To stake an APP in the network, incomplete command
         --tmPeersPort string        the port for tendermint p2p (default "26656")
         --tmRPCPort string          the port for tendermint rpc (default "26657")|
 
-Scenario: To unstake an APP in the network
+Scenario: 043 To unstake an APP in the network
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his APP into the network
     When typing "pocket apps unstake <fromAddr> <chainID> <fees> [flags]"
     Then user should be shown a success message
 
-Scenario: To unstake an APP in the network, wrong address
+Scenario: 044 To unstake an APP in the network, wrong address
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his APP into the network
     When typing "pocket apps unstake <fromAddr> <chainID> <fees> [flags]", with wrong address
     Then user should be shown a failure message
 
-Scenario: To unstake an APP in the network, incomplete command
+Scenario: 045 To unstake an APP in the network, incomplete command
     Given that the user has Pocket Network latest version installed.
     And wants to unstake his APP into the network
     When typing "pocket apps unstake "
@@ -160,7 +160,7 @@ Scenario: To unstake an APP in the network, incomplete command
 
     accepts 3 arg(s), received 0|
 
-Scenario: To be able to edit an stake amount from an APP
+Scenario: 046 To be able to edit an stake amount from an APP
     Given that the user has Pocket Network latest version installed.
     And wants to edit or modify his current stake within the network
     When typing "pocket apps stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
@@ -172,7 +172,7 @@ Scenario: To be able to edit an stake amount from an APP
     | pocket query app <AppAddress> | 
     Then user finds the new staking details there.
 
-Scenario: To prevent a user of staking less amount of relays
+Scenario: 047 To prevent a user of staking less amount of relays
     Given that the user has Pocket Network latest version installed.
     And wants to edit or modify his current stake within the network
     When typing "pocket apps stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
@@ -184,7 +184,7 @@ Scenario: To prevent a user of staking less amount of relays
     | pocket query APP <APPAddress> | 
     Then user finds the new staking details are not there, and the old ones are kept.
 
-Scenario: To verify that the APP which edit stake have happened loses the servicing node
+Scenario: 048 To verify that the APP which edit stake have happened loses the servicing node
     Given that the user has Pocket Network latest version installed.
     And a given APP it's in a current session
     And wants to edit or modify his current stake within the network
@@ -198,7 +198,7 @@ Scenario: To verify that the APP which edit stake have happened loses the servic
     Then user finds the new staking details there.
     And when v1/dispatch is queried, the nodes are not servicing the APP anymore.
 
-Scenario: To verify that a node gets paid for APP staking changes mid section
+Scenario: 049 To verify that a node gets paid for APP staking changes mid section
     Given that the user has Pocket Network latest version installed.
     And wants to edit or modify his current stake within the network
     When typing "pocket apps stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
@@ -213,7 +213,7 @@ Scenario: To verify that a node gets paid for APP staking changes mid section
     And when v1/dispatch is queried, the nodes are not servicing the APP anymore.
     And nodes received the claims for the serviced relays up to the chaning point.
 
-Scenario: To verify that the node relays increments if APP Max Relays increases
+Scenario: 050 To verify that the node relays increments if APP Max Relays increases
     Given that the user has Pocket Network latest version installed.
     And a given APP it's in a current session
     And wants to edit or modify his current stake within the network
