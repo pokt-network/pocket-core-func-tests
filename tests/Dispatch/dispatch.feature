@@ -1,7 +1,7 @@
 Feature: /v1/client/dispatch
     Should be able to get a complete list of the dispatchers that will be serving your session.
 
-    Scenario Outline: Sends request to check dispatch that will be servicing your requests for the session.
+    Scenario Outline: 295 - Sends request to check dispatch that will be servicing your requests for the session.
         Given a pocket core node
         And an application exists in the pocket core network
         And the application has an address of d0aa03678bd4da7eea822b90e8bbc93b81471355
