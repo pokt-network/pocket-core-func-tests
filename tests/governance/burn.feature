@@ -2,7 +2,7 @@ Feature: Burn
 
    Governance procedure allows members of the DAO to burn funds from the DAO 
 
-   Scenario Outline: Burn funds from DAO 
+   Scenario Outline: 335 Burn funds from DAO 
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov transfer <amount> <DAO Address> <toAddress> <ChainID> <fees>"
@@ -35,7 +35,7 @@ Feature: Burn
     ]
 }|
 
-   Scenario Outline: Burn funds from DAO, wrong address 
+   Scenario Outline: 335 Burn funds from DAO, wrong address 
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov burn <amount> <DAO Address> <ChainID>  <fees>"
@@ -50,7 +50,7 @@ Feature: Burn
     "raw_log": "{\"codespace\":\"sdk\",\"code\":9,\"message\":\"account c993cbc7d29eb94e6429eee2268b6937ce67d75f does not exist\"}"
 }|
 
-   Scenario Outline: burn funds from DAO, incomplete 
+   Scenario Outline: 335 burn funds from DAO, incomplete 
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov burn"

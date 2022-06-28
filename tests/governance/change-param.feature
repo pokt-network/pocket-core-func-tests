@@ -3,7 +3,7 @@ Feature: Change param
    Governance procedure allows members of the DAO to be able to change parameters of the chain with a transaction.
 
 
-   Scenario Outline: Change param pocketcore/ClaimExpiration 
+   Scenario Outline: 306 Change param pocketcore/ClaimExpiration 
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -36,7 +36,7 @@ Feature: Change param
     ]
 }|
 
-   Scenario Outline: Change pocketcore/ClaimExpiration, invalid param
+   Scenario Outline: 307 Change pocketcore/ClaimExpiration, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -71,7 +71,7 @@ Feature: Change param
    But value does not change
 
 
-   Scenario Outline: Change param pocketcore/MinimumNumberOfProofs 
+   Scenario Outline: 308 Change param pocketcore/MinimumNumberOfProofs 
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -104,7 +104,7 @@ Feature: Change param
     ]
 }|
 
-   Scenario Outline: Change pocketcore/MinimumNumberOfProofs, invalid param
+   Scenario Outline: 309 Change pocketcore/MinimumNumberOfProofs, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -138,7 +138,7 @@ Feature: Change param
 }|
    But value does not change
 
-   Scenario Outline: Change param pocketcore/SessionNodeCount
+   Scenario Outline: 310 Change param pocketcore/SessionNodeCount
  
     Given a pocket network with <ChainID>
     And a DAO address
@@ -172,7 +172,7 @@ Feature: Change param
     ]
 }|
 
-   Scenario Outline: Change pocketcore/SessionNodeCount, invalid param
+   Scenario Outline: 311 Change pocketcore/SessionNodeCount, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -206,7 +206,7 @@ Feature: Change param
 }|
    But value does not change
 
-   Scenario Outline: Change param pocketcore/ReplayAttackBurnMultiplier
+   Scenario Outline: 312 Change param pocketcore/ReplayAttackBurnMultiplier
  
     Given a pocket network with <ChainID>
     And a DAO address
@@ -240,7 +240,7 @@ Feature: Change param
     ]
 }|
 
-   Scenario Outline: Change pocketcore/ReplayAttackBurnMultiplier, invalid param
+   Scenario Outline: 313 Change pocketcore/ReplayAttackBurnMultiplier, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -274,7 +274,7 @@ Feature: Change param
 }|
    But value does not change
 
-   Scenario Outline: Change param pocketcore/ClaimSubmissionWindow
+   Scenario Outline: 314 Change param pocketcore/ClaimSubmissionWindow
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -307,7 +307,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pocketcore/ClaimSubmissionWindow, invalid param
+  Scenario Outline: 315 Change pocketcore/ClaimSubmissionWindow, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -341,7 +341,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pocketcore/SupportedBlockchains
+  Scenario Outline: 316 Change param pocketcore/SupportedBlockchains
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -374,7 +374,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pocketcore/SupportedBlockchains, invalid param
+  Scenario Outline: 317 Change pocketcore/SupportedBlockchains, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -409,7 +409,7 @@ Feature: Change param
    But value does not change
 
 
-  Scenario Outline: Change param pos/DAOAllocation
+  Scenario Outline: 318 Change param pos/DAOAllocation
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -442,7 +442,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/DAOAllocation, invalid param
+  Scenario Outline: 319 Change pos/DAOAllocation, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -476,7 +476,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/DowntimeJailDuration
+  Scenario Outline: 320 Change param pos/DowntimeJailDuration
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -509,7 +509,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/DowntimeJailDuration, invalid param
+  Scenario Outline: 321 Change pos/DowntimeJailDuration, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -543,7 +543,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/MaxEvidenceAge
+  Scenario Outline: 322 Change param pos/MaxEvidenceAge
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -576,7 +576,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/MaxEvidenceAge, invalid param
+  Scenario Outline: 323 Change pos/MaxEvidenceAge, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -610,7 +610,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/MaxJailedBlocks
+  Scenario Outline: 324 Change param pos/MaxJailedBlocks
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -643,7 +643,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/MaxJailedBlocks, invalid param
+  Scenario Outline: 325 Change pos/MaxJailedBlocks, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -677,7 +677,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/MaxValidators
+  Scenario Outline: 326 Change param pos/MaxValidators
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -710,7 +710,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/MaxValidators, invalid param
+  Scenario Outline: 327 Change pos/MaxValidators, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -744,7 +744,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/MaximumChains
+  Scenario Outline: 328 Change param pos/MaximumChains
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -777,7 +777,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/MaximumChains, invalid param
+  Scenario Outline: 329 Change pos/MaximumChains, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -811,7 +811,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/MinSignedPerWindow
+  Scenario Outline: 330 Change param pos/MinSignedPerWindow
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -844,7 +844,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/MinSignedPerWindow, invalid param
+  Scenario Outline: 331 Change pos/MinSignedPerWindow, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -878,7 +878,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/ProposerPercentage
+  Scenario Outline: 332 Change param pos/ProposerPercentage
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -911,7 +911,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/ProposerPercentage, invalid param
+  Scenario Outline: 333 Change pos/ProposerPercentage, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -946,7 +946,7 @@ Feature: Change param
    But value does not change
 
 
-  Scenario Outline: Change param pos/RelaysToTokensMultiplier
+  Scenario Outline: 334 Change param pos/RelaysToTokensMultiplier
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -979,7 +979,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/RelaysToTokensMultiplier, invalid param
+  Scenario Outline: 335 Change pos/RelaysToTokensMultiplier, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1013,7 +1013,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/BlocksPerSession
+  Scenario Outline: 336 Change param pos/BlocksPerSession
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1046,7 +1046,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/BlocksPerSession, invalid param
+  Scenario Outline: 337 Change pos/BlocksPerSession, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1080,7 +1080,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/SignedBlocksWindow
+  Scenario Outline: 338 Change param pos/SignedBlocksWindow
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1113,7 +1113,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/SignedBlocksWindow, invalid param
+  Scenario Outline: 339 Change pos/SignedBlocksWindow, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1147,7 +1147,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/SlashFractionDoubleSign
+  Scenario Outline: 340 Change param pos/SlashFractionDoubleSign
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1180,7 +1180,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/SlashFractionDoubleSign, invalid param
+  Scenario Outline: 341 Change pos/SlashFractionDoubleSign, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1214,7 +1214,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/SlashFractionDowntime
+  Scenario Outline: 342 Change param pos/SlashFractionDowntime
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1247,7 +1247,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/SlashFractionDowntime, invalid param
+  Scenario Outline: 343 Change pos/SlashFractionDowntime, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1281,7 +1281,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/SlashFractionDowntime
+  Scenario Outline: 344 Change param pos/SlashFractionDowntime
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1314,7 +1314,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/SlashFractionDowntime, invalid param
+  Scenario Outline: 345 Change pos/SlashFractionDowntime, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1348,7 +1348,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/StakeMinimum
+  Scenario Outline: 346 Change param pos/StakeMinimum
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1381,7 +1381,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/StakeMinimum, invalid param
+  Scenario Outline: 347 Change pos/StakeMinimum, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1415,7 +1415,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param pos/UnstakingTime
+  Scenario Outline: 348 Change param pos/UnstakingTime
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1448,7 +1448,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change pos/UnstakingTime, invalid param
+  Scenario Outline: 349 Change pos/UnstakingTime, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1482,7 +1482,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param application/UnstakingTime
+  Scenario Outline: 350 Change param application/UnstakingTime
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1515,7 +1515,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change application/UnstakingTime, invalid param
+  Scenario Outline: 351 Change application/UnstakingTime, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1549,7 +1549,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param application/MaxValidators
+  Scenario Outline: 352 Change param application/MaxValidators
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1582,7 +1582,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change application/MaxValidators, invalid param
+  Scenario Outline: 353 Change application/MaxValidators, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1616,7 +1616,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param application/MaximumChains
+  Scenario Outline: 354 Change param application/MaximumChains
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1649,7 +1649,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change application/MaximumChains, invalid param
+  Scenario Outline: 355 Change application/MaximumChains, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1683,7 +1683,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param application/StakeMinimum
+  Scenario Outline: 356 Change param application/StakeMinimum
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1716,7 +1716,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change application/StakeMinimum, invalid param
+  Scenario Outline: 357 Change application/StakeMinimum, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1750,7 +1750,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param application/BaseRelaysPerPOKT
+  Scenario Outline: 358 Change param application/BaseRelaysPerPOKT
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1783,7 +1783,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change application/BaseRelaysPerPOKT, invalid param
+  Scenario Outline: 359 Change application/BaseRelaysPerPOKT, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1817,7 +1817,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param application/StabilityAdjustment
+  Scenario Outline: 360 Change param application/StabilityAdjustment
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1850,7 +1850,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change application/StabilityAdjustment, invalid param
+  Scenario Outline: 361 Change application/StabilityAdjustment, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1884,7 +1884,7 @@ Feature: Change param
 }|
    But value does not change
 
-  Scenario Outline: Change param application/ParticipationRateOn
+  Scenario Outline: 362 Change param application/ParticipationRateOn
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1917,7 +1917,7 @@ Feature: Change param
     ]
 }|
 
-  Scenario Outline: Change application/ParticipationRateOn, invalid param
+  Scenario Outline: 363 Change application/ParticipationRateOn, invalid param
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params <DAO Address> <ChainID> <paramKey> <param> <fees>"
@@ -1953,7 +1953,7 @@ Feature: Change param
 
 
 
-  Scenario Outline: Change param incomplete
+  Scenario Outline: 364 Change param incomplete
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov change_params"
