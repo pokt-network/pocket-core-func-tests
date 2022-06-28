@@ -1,4 +1,4 @@
-Scenario: User wants to reset his pocket config
+Scenario: 106 User wants to reset his pocket config
     Given that user has Pocket installed and running
     And wants to reset pocket, for any reason
     When user types in "pocket reset"

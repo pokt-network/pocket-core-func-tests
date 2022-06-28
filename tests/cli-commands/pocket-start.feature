@@ -1,4 +1,4 @@
-Scenario: User wants to start pocket
+Scenario: 107 User wants to start pocket
     Given that user has Pocket installed and running
     And wants to start pocket
     When user types in "pocket start"

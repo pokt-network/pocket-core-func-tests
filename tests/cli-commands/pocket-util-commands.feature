@@ -1,4 +1,4 @@
-Scenario: User wants to see the utilities within pocket
+Scenario: 108 User wants to see the utilities within pocket
     Given that user has Pocket installed and running
     And wants to see the pocket utils
     When user types in "pocket util"
@@ -29,7 +29,7 @@ Scenario: User wants to see the utilities within pocket
 
     Use "pocket util [command] --help" for more information about a command.|
 
-Scenario: User wants to generate a chain identifier
+Scenario: 109 User wants to generate a chain identifier
     Given that user has Pocket installed and running
     And wants to generate a chain identifier
     When user types in "pocket util generate-chain [flags]"
@@ -45,7 +45,7 @@ Scenario: User wants to generate a chain identifier
      0001 @ 127.0.0.1
 If incorrect: please remove the chains.json with the delete-chains command|
 
-Scenario: User wants to generate a chain identifier, wrong ticker
+Scenario: 110 User wants to generate a chain identifier, wrong ticker
     Given that user has Pocket installed and running
     And wants to generate a chain identifier
     When user types in "pocket util generate-chain [flags]"
@@ -58,7 +58,7 @@ Code: 119
 Message: "the network Identifier is not valid: encoding/hex: invalid byte: U+006E 'n'"|
     Then user should be prompted to enter ID of the network: "Enter the ID of the network identifier:"
 
-Scenario: User wants to generate a completion script
+Scenario: 111 User wants to generate a completion script
     Given that user has Pocket installed and running
     When user types in "pocket util completion [bash|zsh|fish|powershell]"
     Then user should be shown the script completion as follows. E.g. bash
@@ -124,7 +124,7 @@ Scenario: User wants to generate a completion script
                 noun_aliases=()
             }|
 
-Scenario: User wants to decodes a given transaction encoded in Amino base64 bytes
+Scenario: 112 ser wants to decodes a given transaction encoded in Amino base64 bytes
     Given that user has Pocket installed and running
     When user types in "pocket util decode-tx qALbCxcNCpwBq4P6fApLCkBkMGIyYjVkYmM0NTIwZTM3OTZiNmE5NDVmNWZjNTYxMDBlN2MyMGYxNDUyZWFjMDNhN2I1Mzk1MDZjYWI5NGQ4EgQwMDIxGPljEi8KIJtTB9jJp8+3ruH4LeFmfMjqEEba8SA5iHKQU+xlPCFbEgsQk7HEsoyJtaH+ARgmIhQtd3e+ioxdpoRiOmrr5CPpyfRduygBEg4KBXVwb2t0EgUxMDAwMBppCiWdVEd0IIZqpL/ttK81fYyeDWMcIa7gvb90991lVrKeAjdFMzXkEkBltqW2vB+IvIhsJPjRDs28dIstJVX8SlnwjxeKlSst6nHyFssYHcfrJJtvQihDhi+iu7bf/No9gGsdXcrvMK8CKISErIOI7oWlaQ== true" (must be an amino base64 encoded transaction)
     Then user should be shown the following information:
@@ -136,20 +136,20 @@ Scenario: User wants to decodes a given transaction encoded in Amino base64 byte
     Signer          2d7777be8a8c5da684623a6aebe423e9c9f45dbb
     Sig:            866aa4bfedb4af357d8c9e0d631c21aee0bdbf74f7dd6556b29e0237453335e4|
 
-Scenario: User wants to automatically delete the chains.json file
+Scenario: 113 User wants to automatically delete the chains.json file
     Given that user has Pocket installed and running
     And a chains.json file exists.
     When user types in "pocket util delete-chains"
     Then user should be shown the success message:
     |successfully deleted chains.json|
 
-Scenario: User wants to automatically export genesis.json file based on the state
+Scenario: 114 User wants to automatically export genesis.json file based on the state
     Given that user has Pocket installed and running
     When user types in "pocket util export-genesis-for-reset"
     Then user should be shown the success message:
     |successfully exported genesis.json|
 
-Scenario: User wants to automatically generate the chains.json file
+Scenario: 115 User wants to automatically generate the chains.json file
     Given that user has Pocket installed and running
     And a chains.json file doesn't exist.
     When user types in "pocket util generate-chains"
@@ -176,7 +176,7 @@ Scenario: User wants to automatically generate the chains.json file
     0021 @ https://wetest.dev|
     Then chains.json file should be generated
 
-Scenario: User wants to automatically generate the chains.json file when a chains.json file exists
+Scenario: 116 User wants to automatically generate the chains.json file when a chains.json file exists
     Given that user has Pocket installed and running
     And a chains.json file exists.
     When user types in "pocket util generate-chains"
@@ -186,19 +186,19 @@ Scenario: User wants to automatically generate the chains.json file when a chain
     0021 @ https://wetest.dev
     If incorrect: please remove the chains.json with the delete-chains command|
 
-Scenario: User wants to automatically check the actual config.json information
+Scenario: 117 User wants to automatically check the actual config.json information
     Given that user has Pocket installed and running
     When user types in "pocket util print-configs"
     Then user should be showed the config.json.
 
-Scenario: User wants to rollbacks the blockchain, the state, and app to a previous height
+Scenario: 118 User wants to rollbacks the blockchain, the state, and app to a previous height
     Given that user has Pocket installed and running
     And the user it's at highest weight
     When user types in "pocket util unsafe-rollback"
     Then user should be showed the success message:
     |successfully exported genesis.json|
 
-Scenario: User wants to automatically update the actual config.json information with the latest one
+Scenario: 119 User wants to automatically update the actual config.json information with the latest one
     Given that user has Pocket installed and running
     When user types in "pocket util update-configs"
     Then user should be showed success message:
