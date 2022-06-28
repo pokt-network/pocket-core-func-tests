@@ -7,7 +7,7 @@ and weighted based on the validator's distribution of power.
 Validator power comes from a direct linear correlation between the amount
 of staked POKT cryptocurrency and the power conversion multiplier.
 
-    Scenario Outline: Same power validators
+    Scenario Outline: 132 Same power validators
         Given a pocket network with <validators_count> validators
         And every validator has staked <stake_amount> POKT
         And every validator has <validator_power> equaling <stake_amount>
@@ -27,7 +27,7 @@ of staked POKT cryptocurrency and the power conversion multiplier.
                 |      5000      |     5000     |     600    |      600      |        600        |   1  |     1     |
 
 
-    Scenario Outline: Different validator stakes
+    Scenario Outline: 133 Different validator stakes
         Given a pocket network with <validators_count> validators
         And a <a_validators_amount> validators have staked <a_stake_amount> POKT
         And a <b_validators_amount> validators have staked <b_stake_amount> POKT
