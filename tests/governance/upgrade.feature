@@ -4,7 +4,7 @@ Feature: Upgrade
    Governance procedure allows members of the DAO to issue protocol upgrades, 
    this makes sure all nodes follow through on upgrading.
 
-   Scenario Outline: Upgrade protocol
+   Scenario Outline: 336 Upgrade protocol
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov upgrade  <DAO Address> <height> <version> <ChainID> <fees>"
@@ -38,7 +38,7 @@ Feature: Upgrade
 }|
   When the network reaches the given height, blockchain will halt
 
-   Scenario Outline: Upgrade protocol, incomplete
+   Scenario Outline: 336 Upgrade protocol, incomplete
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov burn"

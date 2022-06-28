@@ -1,7 +1,7 @@
 Feature: Transfer
 
    Governance procedure allows members of the DAO to transfer funds from the DAO to other accounts.
-   Scenario Outline: Transfer funds from DAO 
+   Scenario Outline: 334 Transfer funds from DAO 
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov transfer <amount> <DAO Address> <ChainID>  <fees>"
@@ -34,7 +34,7 @@ Feature: Transfer
     ]
 }|
 
-   Scenario Outline: Transfer funds from DAO, wrong address 
+   Scenario Outline: 334 Transfer funds from DAO, wrong address 
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov transfer <amount> <DAO Address> <ChainID>  <fees>"
@@ -49,7 +49,7 @@ Feature: Transfer
     "raw_log": "{\"codespace\":\"sdk\",\"code\":9,\"message\":\"account c993cbc7d29eb94e6429eee2268b6937ce67d75f does not exist\"}"
 }|
 
-   Scenario Outline: Transfer funds from DAO incomplete 
+   Scenario Outline: 334 Transfer funds from DAO incomplete 
     Given a pocket network with <ChainID>
     And a DAO address
     When typing "pocket gov transfer"
