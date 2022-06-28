@@ -1,5 +1,5 @@
 Feature: v1/query/nodeparams
-    Scenario: Correct height number
+    Scenario: 269 Correct height number
         Given a pocket core node
         And a genesis file query-nodeparams-rpc-genesis-step1.json
         And an node exists in the pocket network in height 2
@@ -24,7 +24,7 @@ Feature: v1/query/nodeparams
             "slash_fraction_double_sign": 0,
             "slash_fraction_downtime": 0
         }
-    Scenario: Incorrect height number
+    Scenario: 270 Incorrect height number
         Given a pocket core node
         And a genesis file query-nodeparams-rpc-genesis-step2.json
         And a node doesn't exist in the pocket network in height -1
@@ -43,7 +43,7 @@ Feature: v1/query/nodeparams
                 "message":"failed to load state at height -1; failed to get Store: no data (latest height: 4108)"                
             }"
         }
-    Scenario: Invalid height number
+    Scenario: 271 Invalid height number
         Given a pocket core node
         And a genesis file query-nodeparams-rpc-genesis-step3.json
         And a node doesn't exist in the pocket network in height -i

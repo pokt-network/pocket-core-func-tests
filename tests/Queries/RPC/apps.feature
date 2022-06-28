@@ -1,6 +1,6 @@
 Feature: /v1/query/apps endpoint
 
-    Scenario: Group of application exists.
+    Scenario: 256 Group of application exists.
         Given a pocket core node
         And a query-apps-rpc-genesis-step1.json
         And a collection of apps exist in the pocket core network.
@@ -33,7 +33,7 @@ Feature: /v1/query/apps endpoint
             "total_pages": 0
         }
     
-    Scenario: Group of application doesn't exist
+    Scenario: 257 Group of application doesn't exist
         Given a pocket core node
         And a query-apps-rpc-genesis-step2.json
         And a collection of apps doesn't exist in the pocket core network.

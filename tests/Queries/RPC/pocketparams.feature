@@ -1,5 +1,5 @@
 Feature: /v1/query/pocketparams endpoint
-    Scenario: Return parameters at height
+    Scenario: 281 Return parameters at height
         Given a pocket core node
         And a genesis file query-height-genesis-step1.json
         And a pocket core network is running
@@ -123,7 +123,7 @@ Feature: /v1/query/pocketparams endpoint
                 "006B"
             ]
         }
-    Scenario: Return error with incorrect height
+    Scenario: 282 Return error with incorrect height
         Given a pocket core node
         And a genesis file query-height-genesis-step2.json
         And a pocket core network is running
@@ -140,7 +140,7 @@ Feature: /v1/query/pocketparams endpoint
                 "message":"failed to load state at height -1; failed to get Store: no data (latest height: 4308)"
             }"
         }
-    Scenario: Return error with invalid chars in height
+    Scenario: 283 Return error with invalid chars in height
         Given a pocket core node
         And a genesis file query-height-genesis-step2.json
         And a pocket core network is running

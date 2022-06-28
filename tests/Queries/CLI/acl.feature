@@ -1,5 +1,5 @@
 Feature: ACL method in pocket-core cli's query namespace
-    Scenario: Returns map of ACL        
+    Scenario: 202 Returns map of ACL        
         Given a pocket core node
         And a genesis file query-acl-genesis-step1.json
         When I use pocket query namespace

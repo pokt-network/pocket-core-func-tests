@@ -1,5 +1,5 @@
 Feature: supply method in pocket-core cli's query namespace
-    Scenario: Returns the list of node params specified in the height
+    Scenario: 235 Returns the list of node params specified in the height
         Given a pocket core node
         And a genesis file query-supply-genesis-step1.json
         And a pocket core network is running
@@ -16,7 +16,7 @@ Feature: supply method in pocket-core cli's query namespace
             "Total Supply": 0
         }
     
-    Scenario: Returns error code with wrong height
+    Scenario: 236 Returns error code with wrong height
         Given a pocket core node
         And a genesis file query-supply-genesis-step1.json
         And a pocket core network is running

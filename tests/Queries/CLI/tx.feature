@@ -1,5 +1,5 @@
 Feature: tx method in pocket-core cli's query namespace
-    Scenario: Return a transaction detail
+    Scenario: 239 Return a transaction detail
         Given a pocket core node
         And a genesis file query-transaction-genesis-step1.json
         And a transaction with the hash 0x197e4d46009879f28f978a90627c7dfeab64b4777afcc24e2b9c3d72b4dada22 exists in the pocket core network
@@ -40,7 +40,7 @@ Feature: tx method in pocket-core cli's query namespace
             }
         }
 
-        Scenario: Transaction doesn't exist
+        Scenario: 240 Transaction doesn't exist
             Given a pocket core node
             And a genesis file query-transaction-genesis-step2.json
             And a transaction with the hash 23197E4D46009879F28F978A90627C7DFEAB64B4777AFCC24E2B9C3D72B4DADA22 exists in the pocket core network
@@ -53,7 +53,7 @@ Feature: tx method in pocket-core cli's query namespace
                 "message":"Tx: response error: RPC error -32603 - Internal error: Tx (23197E4D46009879F28F978A90627C7DFEAB64B4777AFCC24E2B9C3D72B4DADA22) not found"
             }
         
-        Scenario: Transaction has invalid characters 
+        Scenario: 241 Transaction has invalid characters 
             Given a pocket core node
             And a genesis file query-transaction-genesis-step2.json
             And a transaction with the hash 23197E4D4)(&09879F28F978A90627C7DFEAB64B4777AFCC24E2B9C3D72B4DADA22 exists in the pocket core network

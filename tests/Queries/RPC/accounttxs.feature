@@ -1,5 +1,5 @@
 Feature: /v1/query/tx
-    Scenario: Return a node's transaction detail
+    Scenario: 248 Return a node's transaction detail
         Given a pocket core node
         And a genesis file query-accounttxs-genesis-step1.json
         And an account with the address 197e4d46009879f28f978a90627c7dfeab64b4777afcc24e2b9c3d72b4dada22 exists in the pocket core network
@@ -45,7 +45,7 @@ Feature: /v1/query/tx
         "total_count": "string"
         }
 
-   Scenario: Returns null
+   Scenario: 249 Returns null
         Given a pocket core node
         And a genesis file query-accounttxs-genesis-step2.json
         And an account with the address 19711d46009879f28f978a90627c7dfeab64b4777afcc24e2b9c3d72b4dada22 doesn't exist in the pocket core network
@@ -60,7 +60,7 @@ Feature: /v1/query/tx
             "txs": null
         }
 
-    Scenario: Invalid chars in address
+    Scenario: 250 Invalid chars in address
         Given a pocket core node
         And a genesis file query-transaction-genesis-step3.json
         And a transaction with the hash 19711d46009879f28f978a90627c7dfeab64b4777afcc24e2b9c3d72b4dad@#$ doesn't exist in the pocket core network

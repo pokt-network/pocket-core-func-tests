@@ -1,5 +1,5 @@
 Feature: v1/query/block endpoint
-    Scenario: Get block height
+    Scenario: 260 Get block height
         Given a pocket core node
         And a genesis file query-block-genesis-step1.json
         And a pocket core network is running
@@ -92,7 +92,7 @@ Feature: v1/query/block endpoint
             }
         }
 
-    Scenario: Given an invalid number height
+    Scenario: 261 Given an invalid number height
         Given a pocket core node
         And a genesis file query-block-genesis-step2.json
         And a pocket core network is running
@@ -107,7 +107,7 @@ Feature: v1/query/block endpoint
             "message":"Block: response error: RPC error -32603 - Internal error: Height must be less than or equal to the current blockchain height"
         }
     
-    Scenario: Given an invalid char in height
+    Scenario: 262 Given an invalid char in height
         Given a pocket core node
         And a genesis file query-block-genesis-step3.json
         And a pocket core network is running

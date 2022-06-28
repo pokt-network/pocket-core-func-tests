@@ -1,5 +1,5 @@
 Feature: stake method in pocket-core cli's nodes namespace
-    Scenario: Should stake the correct amount.
+    Scenario: 152 Should stake the correct amount.
         Given a pocket core node with <chainID>
         And a genesis file "nodes-stake-genesis.json"
         And a node exist with address df82af89fea299911f8cdac747de72b6bdb1468d
@@ -45,7 +45,7 @@ Feature: stake method in pocket-core cli's nodes namespace
                 "txhash": "568DFE433132CB61A30C05995439F7829CC610EDC562C5713421A240E72B57C4"
             }|
 
-    Scenario: Using non existent address
+    Scenario: 142 Using non existent address
         Given a pocket core node
         And a genesis file "nodes-stake-genesis.json"
         And a node doesn't exist with address ed7b858387905068b45022a7ab2b4952f2aa7aae
@@ -66,7 +66,7 @@ Feature: stake method in pocket-core cli's nodes namespace
         Then the CLI should show a message:
             "key with address ED7B858387905068B45022A7AB2B4952F2AA7AAE not found"
 
-    Scenario: Sending transaction with insufficient founds
+    Scenario: - Sending transaction with insufficient founds
         Given a pocket core node with <chainID>
         And a genesis file "nodes-stake-genesis.json"
         And a node exist with address df82af89fea299911f8cdac747de72b6bdb1468d

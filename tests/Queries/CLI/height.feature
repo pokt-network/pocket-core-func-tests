@@ -1,6 +1,6 @@
 Feature: height method in pocket-core cli's query namespace
 
-    Scenario: Returns the height of the pocket core network
+    Scenario: 218 Returns the height of the pocket core network
         Given a pocket core node
         And a genesis file query-height-genesis-step1.json
         And a pocket core network is running

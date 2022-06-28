@@ -1,5 +1,5 @@
 Feature: /v1/query/supply endpoint
-    Scenario: Returns the list of node params specified in the height
+    Scenario: 284 Returns the list of node params specified in the height
         Given a pocket core node
         And a genesis file query-supply-genesis-step1.json
         And a pocket core network is running
@@ -18,7 +18,7 @@ Feature: /v1/query/supply endpoint
             "total": 0
         }
 
-    Scenario: Returns error code with wrong height
+    Scenario: 285 Returns error code with wrong height
         Given a pocket core node
         And a genesis file query-supply-genesis-step2.json
         And a pocket core network is running
@@ -37,7 +37,7 @@ Feature: /v1/query/supply endpoint
             }"
         }
 
-    Scenario: Returns error code with invalid char height
+    Scenario: 286 Returns error code with invalid char height
         Given a pocket core node
         And a genesis file query-supply-genesis-step3.json
         And a pocket core network is running

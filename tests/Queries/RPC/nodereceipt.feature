@@ -1,5 +1,5 @@
 Feature: /v1/query/nodereceipt endpoint
-    Scenario: Pocket node exists 
+    Scenario: 273 Pocket node exists 
         Given a pocket core node
         And a genesis file query-nodereceipt-rpc-genesis-step1.json
         And an account exists in the pocket network with address 4920ce1d787c60e2eaeff366c79e8aa2b82525f1
@@ -26,7 +26,7 @@ Feature: /v1/query/nodereceipt endpoint
             "total_relays":0
         }
       
-    Scenario: Node information is invalid
+    Scenario: 274 Node information is invalid
         Given a pocket core node
         And a genesis file query-nodereceipt-rpc-genesis-step1.json
         And an account doesn't exist in the pocket network with address 4920ce1d787c60e2eaeff366c79e8aa2b82525f1

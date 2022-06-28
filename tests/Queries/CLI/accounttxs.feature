@@ -1,5 +1,5 @@
 Feature: Account-txs method in pocket-core cli's query namespace
-    Scenario: Returns transactions
+    Scenario: 198 Returns transactions
         Given a pocket core node
         And a genesis file query-accounttxs-genesis-step1.json
         And an account with the address 19711d46009879f28f978a90627c7dfeab64b4777afcc24e2b9c3d72b4dada22 exists in the pocket core network
@@ -43,7 +43,7 @@ Feature: Account-txs method in pocket-core cli's query namespace
         "total_count": "string"
         }
 
-   Scenario: Returns null
+   Scenario: 199 Returns null
         Given a pocket core node
         And a genesis file query-accounttxs-genesis-step2.json
         And an account with the address 19711d46009879f28f978a90627c7dfeab64b4777afcc24e2b9c3d72b4dada22 doesn't exist in the pocket core network
@@ -56,7 +56,7 @@ Feature: Account-txs method in pocket-core cli's query namespace
             "total_count":0
         }
 
-    Scenario: Invalid chars in address
+    Scenario: 200 Invalid chars in address
         Given a pocket core node
         And a genesis file query-transaction-genesis-step3.json
         And an account with the address "19711d46009879f28f978a90627c7dfeab64b4777afcc24e2b9c3d72b4dad@#$" doesn't exist in the pocket core network

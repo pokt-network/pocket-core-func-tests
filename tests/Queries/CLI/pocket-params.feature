@@ -1,5 +1,5 @@
 Feature: pocket-params method in pocket-core cli's query namespace
-    Scenario: Return supported blockchains at given height
+    Scenario: 237 Return supported blockchains at given height
         Given a pocket core node
         And a genesis file query-pocketparams-genesis-step1.json
         And a pocket core network is running
@@ -17,7 +17,7 @@ Feature: pocket-params method in pocket-core cli's query namespace
                 "0003",
                 "..." ]
 
-    Scenario: Return error with incorrect height
+    Scenario: 238 Return error with incorrect height
         Given a pocket core node
         And a genesis file query-pocketparams-genesis-step1.json
         And a pocket core network is running

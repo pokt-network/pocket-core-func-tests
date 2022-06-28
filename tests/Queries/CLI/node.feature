@@ -1,6 +1,6 @@
 Feature: node method in pocket-core cli's query namespace
 
-    Scenario: Returns a pocket network node at the specified height
+    Scenario: 227 Returns a pocket network node at the specified height
         Given a pocket core node
         And a genesis file query-node-genesis-step1.json
         And a pocket core network is running
@@ -22,7 +22,7 @@ Feature: node method in pocket-core cli's query namespace
             "unstaking_time": "0001-01-01T00:00:00Z"
         }
 
-    Scenario: Node doesn't exist in pocket core network
+    Scenario: 228 Node doesn't exist in pocket core network
         Given a pocket core node
         And a genesis file query-node-genesis-step2.json
         And a pocket core network is running
@@ -36,7 +36,7 @@ Feature: node method in pocket-core cli's query namespace
             "message":"no validator found with address 029a0da72bbca5dc9792c72ac3a2616910c479b3"
         }
 
-    Scenario: Node address with invalid chars
+    Scenario: 229 Node address with invalid chars
         Given a pocket core node
         And a genesis file query-node-genesis-step3.json
         And a pocket network is running

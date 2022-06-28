@@ -1,5 +1,5 @@
 Feature: daoOwner method in pocket-core cli's query namespace
-    Scenario: Get daoOwner
+    Scenario: 217 daoOwner method in pocket-core cli's query namespace
         Given a pocket core node
         And a genesis file query-daoOwner-genesis-step1.json
         And a pocket core network is running
