@@ -1,4 +1,4 @@
-Scenario: block proposer reward
+Scenario: 302 block proposer reward
 Given a pocket core network with latest version
 When a pseudo-random staked validator is picked to propose a block
 And the validator proposes a block
