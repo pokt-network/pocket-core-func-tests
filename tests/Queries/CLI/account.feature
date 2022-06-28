@@ -1,5 +1,5 @@
 Feature: Account method in pocket-core cli's  query namespace
-  Scenario: Account exists
+  Scenario: 193 Account exists
     Given a pocket core node
     And a genesis file query-account-rpc-genesis-step1.json
     And an account exists in the pocket network with address 4920ce1d787c60e2eaeff366c79e8aa2b82525f1
@@ -12,7 +12,7 @@ Feature: Account method in pocket-core cli's  query namespace
             Pubkey:        string
             Coins:         string
 
-  Scenario: Invalid height 
+  Scenario: 194 Invalid height 
     Given a pocket core node
     And a genesis file query-account-rpc-genesis-step1.json
     And an account exists in the pocket network with address 4920ce1d787c60e2eaeff366c79e8aa2b82525f1
@@ -26,7 +26,7 @@ Feature: Account method in pocket-core cli's  query namespace
             "message":"failed to load state at height 5600000; failed to get Store: no data (latest height: 5267)"
         }  
 
-  Scenario: Account does not exist
+  Scenario: 195  Account does not exist
     Given a pocket core node
     And a genesis file query-account-rpc-genesis-step2.json
     And an account doesn't exist in the pocket network with address 4920ce1d787c60e2eaeff366c79e8aa2b8252123
@@ -39,7 +39,7 @@ Feature: Account method in pocket-core cli's  query namespace
             Pubkey:        null
             Coins:         null
 
-  Scenario: Account address is invalid
+  Scenario: 196 Account address is invalid
     Given a pocket core node
     And a genesis file query-account-rpc-genesis-step3.json
     And an account doesn't exist in the pocket network with address 2BBCA5DC9792C72AC3A2616910C4AAAA
@@ -49,7 +49,7 @@ Feature: Account method in pocket-core cli's  query namespace
     Then the CLI response should be detailing:
         Incorrect address length
 
-  Scenario: Account address contains invalid characters
+  Scenario: 197 Account address contains invalid characters
     Given a pocket core node
     And a genesis file query-account-rpc-genesis-step3.json
     And an account doesn't exist in the pocket network with address 1-$A&DA72BBCA5DC9792C72AC3A2616910C479B3

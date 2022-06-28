@@ -1,5 +1,5 @@
 Feature: /v1/query/supportedchains endpoint
-    Scenario: Returns list of supported blockchains specified in the height
+    Scenario: 287 Returns list of supported blockchains specified in the height
         Given a pocket core node
         And a genesis file query-supportedchains-genesis-step1.json
         And a pocket core network is running
@@ -15,7 +15,7 @@ Feature: /v1/query/supportedchains endpoint
             ]
         }
     
-    Scenario: Returns an error code with invalid height
+    Scenario: 288 Returns an error code with invalid height
         Given a pocket core node
         And a genesis file query-supportedchains-genesis-step2.json
         And a pocket core network is running
@@ -34,7 +34,7 @@ Feature: /v1/query/supportedchains endpoint
             }"
         }
 
-    Scenario: Returns an error code with invalid char in height
+    Scenario: 289 Returns an error code with invalid char in height
         Given a pocket core node
         And a genesis file query-supportedchains-genesis-step3.json
         And a pocket core network is running

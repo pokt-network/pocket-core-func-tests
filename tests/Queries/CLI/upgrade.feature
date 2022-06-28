@@ -1,5 +1,5 @@
 Feature: upgrade method in pocket-core cli's query namespace
-    Scenario: Gets the latest gov upgrade
+    Scenario: 242 Gets the latest gov upgrade
         Given a pocket core node
         And a genesis file query-upgrade-genesis-step1.json
         When I use query namespace
@@ -7,7 +7,7 @@ Feature: upgrade method in pocket-core cli's query namespace
         Then the CLI should respond a message with:
         "{number number}"
 
-    Scenario: Send invalid height
+    Scenario: 245 Send invalid height
         Given a pocket core node
         And a genesis file query-upgrade-genesis-step2.json
         When I use query namespace

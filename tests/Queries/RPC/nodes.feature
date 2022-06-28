@@ -1,5 +1,5 @@
 Feature: /v1/query/nodes endpoint
-    Scenario: Returns page of nodes
+    Scenario: 278 Returns page of nodes
         Given various pocket core nodes
         And a genesis file query-nodes-rpc-genesis-step1.json
         And the exist in the pocket core network
@@ -36,7 +36,7 @@ Feature: /v1/query/nodes endpoint
             "total_pages": 100
         }
     
-    Scenario: Returns error when given wrong height
+    Scenario: 279 Returns error when given wrong height
         Given various pocket core nodes
         And a genesis file query-nodes-rpc-genesis-step2.json
         And the exist in the pocket core network
@@ -63,7 +63,7 @@ Feature: /v1/query/nodes endpoint
             }"
         }
 
-    Scenario: Returns null when given 0 page
+    Scenario: 280 Returns null when given 0 page
         Given various pocket core nodes
         And a genesis file query-nodes-rpc-genesis-step3.json
         And the exist in the pocket core network

@@ -1,6 +1,6 @@
 Feature: /v1/query/appparams endpoint 
     
-    Scenario: Request valid app height.
+    Scenario: 253 Request valid app height.
         Given a pocket core node
         And a genesis file query-appparams-rpc-genesis-step1.json
         And an application exists in the pocket core network
@@ -16,7 +16,7 @@ Feature: /v1/query/appparams endpoint
             "participation_rate_on": true
         }
 
-    Scenario: Request invalid app height.
+    Scenario: 254 Request invalid app height.
         Given a pocket core node
         And a genesis file query-appparams-rpc-genesis-step2.json
         And an application exists in the pocket core network
@@ -32,7 +32,7 @@ Feature: /v1/query/appparams endpoint
                 }"
         }
 
-    Scenario: Request invalid app height with bad chars.
+    Scenario: 255 Request invalid app height with bad chars.
         Given a pocket core node
         And a genesis file query-appparams-rpc-genesis-step3.json
         And an application exists in the pocket core network

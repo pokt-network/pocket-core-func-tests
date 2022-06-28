@@ -1,5 +1,5 @@
 Feature: Unjail method in pocket-core cli's nodes namespace
-    Scenario: Should unjail a node.
+    Scenario: 151 Should unjail a node.
         Given a pocket core node
         And a genesis file "nodes-unjail-genesis.json"
         And a node exist with address 0aad1b44723b909cb0cc5906b77ad0bae9772487
@@ -42,7 +42,7 @@ Feature: Unjail method in pocket-core cli's nodes namespace
             }
             |
 
-    Scenario: Unjail a node that's not jailed.
+    Scenario: 151 Unjail a node that's not jailed.
         Given a pocket core node
         And a genesis file "nodes-unjail-genesis.json"
         And a node exist with address df82af89fea299911f8cdac747de72b6bdb1468d
@@ -124,7 +124,7 @@ Feature: Unjail method in pocket-core cli's nodes namespace
             }
         }|
 
-    Scenario: Unjail a node that doesn't exist
+    Scenario: 151 Unjail a node that doesn't exist
         Given a pocket core node
         And a genesis file "nodes-unjail-genesis.json"
         And a node exist with address ed7b858387905068b45022a7ab2b4952f2c9aaaa
@@ -142,7 +142,7 @@ Feature: Unjail method in pocket-core cli's nodes namespace
         Then the CLI should show a message:
             "panic: key with address ed7b858387905068b45022a7ab2b4952f2c9aaaa not found"
 
-    Scenario: Use invalid chars in address
+    Scenario: 151 Use invalid chars in address
         Given a pocket core node
         And a genesis file "nodes-unjail-genesis.json"
         And a node doesn't exist with address 0aad1b44723b909cb0cc5906b77ad0bae9772487@$AAAA

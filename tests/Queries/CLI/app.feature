@@ -1,5 +1,5 @@
 Feature: App method in pocket-core cli's query namespace
-    Scenario: Returns app details
+    Scenario: 206 Returns app details
         Given a pocket core node
         And a genesis file query-app-rpc-genesis-step1.json
         And an application exists in the pocket core network with adress 4920ce1d787c60e2eaeff366c79e8aa2b82525f1
@@ -20,7 +20,7 @@ Feature: App method in pocket-core cli's query namespace
             "unstaking_time": "string"
         }
 
-    Scenario: Application address doesn't exist
+    Scenario: 207 Application address doesn't exist
         Given a pocket core node
         And a genesis file query-app-rpc-genesis-step2.json
         And an application doesn't exist in the pocket core network with adress 4920ce1d787123456aeff366c79e8aa2b82525f1
@@ -30,7 +30,7 @@ Feature: App method in pocket-core cli's query namespace
         Then the CLI response should be a message detailing:
             "no application found with address 4920ce1d787123456aeff366c79e8aa2b82525f1"
     
-    Scenario: Application address has incorrect length valid
+    Scenario: 208 Application address has incorrect length valid
         Given a pocket core node
         And a genesis file query-app-rpc-genesis-step3.json
         And an application doesn't exist in the pocket core network with adress 4920ce1d787123456aeff366c79e8aa2
@@ -40,7 +40,7 @@ Feature: App method in pocket-core cli's query namespace
         Then the CLI response should be a message detailing:
             "Incorrect address length"
     
-    Scenario: Application address has invalid characters
+    Scenario: 209 Application address has invalid characters
         Given a pocket core node
         And a genesis file query-app-rpc-genesis-step3.json
         And an application doesn't exist in the pocket core network with adress 4920ce1d787123456aeff366c79e8aa2

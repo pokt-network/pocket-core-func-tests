@@ -1,5 +1,5 @@
 Feature: node-params method in pocket-core cli's query namespace
-    Scenario: Correct height number
+    Scenario: 219 Correct height number
         Given a pocket core node
         And a genesis file query-nodeparams-rpc-genesis-step1.json
         And an node exists in the pocket network in height 2
@@ -21,7 +21,7 @@ Feature: node-params method in pocket-core cli's query namespace
             "slash_fraction_double_sign": 0,
             "slash_fraction_downtime": 0
         }
-    Scenario: Incorrect height number
+    Scenario: 220 Incorrect height number
         Given a pocket core node
         And a genesis file query-nodeparams-rpc-genesis-step2.json
         And an node doesn't exist in the pocket network in height -1
@@ -38,7 +38,7 @@ Feature: node-params method in pocket-core cli's query namespace
             }"
         }
 
-    Scenario: Invalid height number
+    Scenario: 221 Invalid height number
         Given a pocket core node
         And a genesis file query-nodeparams-rpc-genesis-step3.json
         And a node doesn't exist in the pocket network in height -i

@@ -1,5 +1,5 @@
 Feature: /v1/query/app endpoint
-    Scenario: Application address exists
+    Scenario: 256 Application address exists
         Given a pocket core node
         And a genesis file query-app-rpc-genesis-step1.json
         And an application exists in the pocket core network with adress 4920ce1d787c60e2eaeff366c79e8aa2b82525f1
@@ -19,7 +19,7 @@ Feature: /v1/query/app endpoint
             "unstaking_time": "string"
         }
     
-        Scenario: Application address doesn't exist
+        Scenario: 257 Application address doesn't exist
         Given a pocket core node
         And a genesis file query-app-rpc-genesis-step2.json
         And an application doesn't exist in the pocket core network with adress 4920ce1d787123456aeff366c79e8aa2b82525f1
@@ -31,7 +31,7 @@ Feature: /v1/query/app endpoint
             "message":"no application found with address 4920ce1d787123456aeff366c79e8aa2b82525f1"
         }
 
-    Scenario: Application address is not valid
+    Scenario: 258 Application address is not valid
         Given a pocket core node
         And a genesis file query-app-rpc-genesis-step3.json
         And an application address is invalid with the adress 4920ce1d787123456aeff366c79e8aa2
@@ -43,7 +43,7 @@ Feature: /v1/query/app endpoint
             "message":"Incorrect address length"
         }
 
-    Scenario: Application address has invalid characters
+    Scenario: 259 Application address has invalid characters
         Given a pocket core node
         And a genesis file query-app-rpc-genesis-step4.json
         And an application doesn't exist in the pocket core network with adress 4920ce1d78712-%^&aeff366c79e8aa2b82525f1

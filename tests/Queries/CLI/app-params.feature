@@ -1,5 +1,5 @@
 Feature: app-params method in pocket-core cli's query namespace
-    Scenario: Request valid app height.
+    Scenario: 203 Request valid app height.
         Given a pocket core node
         And a genesis file query-appparams-rpc-genesis-step1.json
         And an application exists in the pocket core network at height 2
@@ -15,7 +15,7 @@ Feature: app-params method in pocket-core cli's query namespace
                 Stability Adjustment         0
                 Participation Rate On        false,
         
-    Scenario: Request invalid app height.
+    Scenario: 204 Request invalid app height.
         Given a pocket core node
         And a genesis file query-appparams-rpc-genesis-step2.json
         And an application doesn't exist in the pocket core network at height 5161534
@@ -32,7 +32,7 @@ Feature: app-params method in pocket-core cli's query namespace
                 }"
             }
     
-    Scenario: Request invalid app height with bad chars.
+    Scenario: 205 Request invalid app height with bad chars.
         Given a pocket core node
         And a genesis file query-appparams-rpc-genesis-step3.json
         And an application exists in the pocket core network

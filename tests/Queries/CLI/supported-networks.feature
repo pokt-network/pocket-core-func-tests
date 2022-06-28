@@ -1,5 +1,5 @@
 Feature: supported-networks method in pocket-core cli's query namespace
-    Scenario: Returns list of supported blockchains specified in the height
+    Scenario: 237 Returns list of supported blockchains specified in the height
         Given a pocket core node
         And a genesis file query-supportedchains-genesis-step1.json
         And a pocket core network is running
@@ -14,7 +14,7 @@ Feature: supported-networks method in pocket-core cli's query namespace
                 ...
             "
 
-    Scenario: Returns an error code with invalid height
+    Scenario: 238 Returns an error code with invalid height
         Given a pocket core node
         And a genesis file query-supportedchains-genesis-step2.json
         And a pocket core network is running

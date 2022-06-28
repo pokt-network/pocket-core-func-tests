@@ -1,5 +1,5 @@
 Feature: nodes method in pocket-core cli's query namespace
-    Scenario: Returns page of nodes
+    Scenario: 230 Returns page of nodes
         Given various pocket core nodes
         And a genesis file query-nodes-rpc-genesis-step1.json
         And they exist in the pocket core network
@@ -26,7 +26,7 @@ Feature: nodes method in pocket-core cli's query namespace
             "total_pages": 100
         }
     
-    Scenario: Returns error when given wrong height
+    Scenario: 231 Returns error when given wrong height
         Given various pocket core nodes
         And a genesis file query-nodes-rpc-genesis-step2.json
         And they exist in the pocket core network
@@ -44,7 +44,7 @@ Feature: nodes method in pocket-core cli's query namespace
             }"
         }
 
-    Scenario: Returns null when given 0 page
+    Scenario: 232 Returns null when given 0 page
         Given various pocket core nodes
         And a genesis file query-nodes-rpc-genesis-step2.json
         And they exist in the pocket core network

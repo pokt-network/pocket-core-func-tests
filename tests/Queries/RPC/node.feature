@@ -1,5 +1,5 @@
 Feature: /v1/query/node endpoint
-    Scenario: Return information about node
+    Scenario: 266 Return information about node
         Given a pocket core node
         And a genesis file query-node-genesis-step1.json
         And an account exists in the pocket core network with address 0xA5DE6D4184016708c1040c355F1c958192276DB5
@@ -23,7 +23,7 @@ Feature: /v1/query/node endpoint
             "unstaking_time": "0001-01-01T00:00:00Z"
         }
     
-    Scenario: Node doesn't exist in pocket core network
+    Scenario: 267 Node doesn't exist in pocket core network
         Given a pocket core node
         And a genesis file query-node-genesis-step2.json
         And an account doesn't exist in the pocket core network with address 0xA5DE6D4184016708c1040c355F1c958192271234
@@ -39,7 +39,7 @@ Feature: /v1/query/node endpoint
             "message":"no validator found with address 029a0da72bbca5dc9792c72ac3a2616910c479b3"
         }
 
-    Scenario: Node address with invalid chars
+    Scenario: 268 Node address with invalid chars
         Given a pocket core node
         And a genesis file query-node-genesis-step3.json
         And an account doesn't exist in the pocket core network with address 02$%0DA72BBCA5DC9792C72AC3A2616910C479B3

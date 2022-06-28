@@ -1,5 +1,5 @@
 Feature: balance method in pocket-core cli's query namespace
-    Scenario: Return list of all relay batch proofs submitted by node
+    Scenario: 224 Return list of all relay batch proofs submitted by node
         Given a pocket core node
         And a genesis file query-nodereceipts-rpc-genesis-step1.json
         And a node exists in the pocket core node with the address 0xA5DE6D4184016708c1040c355F1c958192276DB5
@@ -22,7 +22,7 @@ Feature: balance method in pocket-core cli's query namespace
             ]
         }
 
-    Scenario: Returns null for non existent receipts
+    Scenario: 225 Returns null for non existent receipts
         Given a pocket core node
         And a genesis file query-nodereceipts-rpc-genesis-step2.json
         And a node exists in the pocket core node with the address 0xA5DE6D4184016708c1040c355F1c958192276DB5
@@ -35,7 +35,7 @@ Feature: balance method in pocket-core cli's query namespace
             "null"
         }
 
-    Scenario: Returns null for non existent node
+    Scenario: 226 Returns null for non existent node
         Given a pocket core node
         And a genesis file query-nodereceipts-rpc-genesis-step3.json
         And a node doesn't exist in the pocket core node with the address 0xA5DE6D4184016708c1040c355F1c958192276DB5

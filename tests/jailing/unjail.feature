@@ -5,7 +5,7 @@ Feature: Unjail
  unjailing allows users to pay a fee for infractions.
 
 
-  Scenario: Unjail jailed node from genesis
+  Scenario: 151 Unjail jailed node from genesis
     Given a pocket network with <ChainID>
     And genesis file "jailed-validator-genesis.json" with a jailed validator
     And a node exist with address 0aad1b44723b909cb0cc5906b77ad0bae9772487
@@ -47,7 +47,7 @@ Feature: Unjail
       }
       |
 
-  Scenario: Unjail a validator
+  Scenario: 151 Unjail a validator
     Given a pocket network with <ChainID>
     And a genesis file "nodes-stake-genesis.json"
     And a staked node exist with address df82af89fea299911f8cdac747de72b6bdb1468d

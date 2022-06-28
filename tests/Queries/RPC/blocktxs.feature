@@ -1,5 +1,5 @@
 Feature: /v1/query/blocktxs
-    Scenario: Returns all transactions at block height
+    Scenario: 263 Returns all transactions at block height
         Given a pocket core node
         And a genesis file query-blocktxs-genesis-step1.json  
         And transactions have been done in the pocket core network
@@ -45,7 +45,7 @@ Feature: /v1/query/blocktxs
             "total_count": "string"
         }
 
-    Scenario: Returns null at invalid block height
+    Scenario: 264 Returns null at invalid block height
         Given a pocket core node
         And a genesis file query-blocktxs-genesis-step1.json  
         And transactions have been done in the pocket core network

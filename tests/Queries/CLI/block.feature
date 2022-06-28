@@ -1,6 +1,6 @@
 Feature: block method in pocket-core cli's query namespace
 
-    Scenario: Returns a block height 
+    Scenario: 216 Returns a block height 
         Given a pocket core node
         And a genesis file query-block-genesis-step1.json
         And a pocket core network is running
@@ -91,7 +91,7 @@ Feature: block method in pocket-core cli's query namespace
             }
         }
 
-    Scenario: Given an invalid number height
+    Scenario: 217 Given an invalid number height
         Given a pocket core node
         And a genesis file query-block-genesis-step2.json
         And a pocket core network is running
@@ -104,7 +104,7 @@ Feature: block method in pocket-core cli's query namespace
             "message":"Block: response error: RPC error -32603 - Internal error: Height must be less than or equal to the current blockchain height"
         }
 
-    Scenario: Given an invalid char in height
+    Scenario: 218 Given an invalid char in height
         Given a pocket core node
         And a genesis file query-block-genesis-step3.json
         And a pocket core network is running
