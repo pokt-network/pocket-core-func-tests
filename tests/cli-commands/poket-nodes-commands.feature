@@ -182,6 +182,42 @@ Scenario: -- 00x To prevent a user of staking less amount
     And user queries the node. 
     | pocket query node <NodeAddress> | 
     Then user finds the new staking details are not there, and the old ones are kept.
+    
+Scenario: -- 00x To prevent a user staking below the next bin [PIP22]
+    Given that the user has Pocket Network latest version installed. and RSCALKey AND VEDITKey are active
+    And wants to edit or modify his current stake within the network
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is less than the amount needed to push into the next bin or above the cieling.
+    Then user should be prompted a success message/transaction:
+    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 <amount in current bin and above current stake> 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the node. 
+    | pocket query node <NodeAddress> | 
+    Then user finds the new staking details are not there, and the old ones are kept.
+    
+Scenario: -- To verify a node can edit stake into the next bin [PIP22]
+    Given that the user has Pocket Network latest version installed. and RSCALKey AND VEDITKey are active
+    And wants to edit or modify his current stake within the network
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is greater than the current BIN or above the cieling.
+    Then user should be prompted a success message/transaction:
+    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 <amount + ServicerStakeFloorMultiplier> 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the node. 
+    | pocket query node <NodeAddress> | 
+    Then user finds the new staking details are there.
+    
+Scenario: -- To verify a node can edit stake above the stake weight cieling [PIP22]
+    Given that the user has Pocket Network latest version installed. and RSCALKey AND VEDITKey are active and has a node staked above the cieling
+    And wants to edit or modify his current stake within the network
+    When typing "pocket nodes stake <fromAddr> <amount> <chains> <serviceURI> <chainID> <fees>"
+    And providing the new details, in which the amount is greater than their current stake.
+    Then user should be prompted a success message/transaction:
+    | pocket nodes stake abf1df709a0cc486ac6db216ba9ed260e5597ba9 <currentStake + 1> 0022 testnet 100000 |
+    And after a block have passed.
+    And user queries the node. 
+    | pocket query node <NodeAddress> | 
+    Then user finds the new staking details are there.
 
 Scenario: -- To verify that the node which edit stake have happened it's not dispatching anymore
     Given that the user has Pocket Network latest version installed.
