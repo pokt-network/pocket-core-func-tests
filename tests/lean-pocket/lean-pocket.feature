@@ -70,17 +70,7 @@ In order to use lean_pocket, user must be able to import additional keys.
     Example:
       Failed to read validators json file <error>
 
-  Scenario: --useLean start argument used
-    Given that the user has Pocket Network latest version installed.
-    and user has a properly formed `lean_nodes_keys.json`
-    and the user starts pocket core
-    then they should see a successful start
-    and node_lean.json, priv_val_key_lean.json, priv_val_state_lean.json are created in the data dir
-    Example:
-      # see bottom of file. only shown once to minimize redundancy
-      Example node key files
-
-  Scenario: --useLean and --forceSetValidators start arguments used
+  Scenario: lean_pocket enabled and --forceSetValidators start arguments used
     Given that the user has Pocket Network latest version installed.
     and user has a properly formed `lean_nodes_keys.json`
     and the user starts pocket core
@@ -90,7 +80,7 @@ In order to use lean_pocket, user must be able to import additional keys.
       # see bottom of file. only shown once to minimize redundancy
       Example node key files
 
-  Scenario: --forceSetValidators start argument used without --useLean argument
+  Scenario: --forceSetValidators start argument used without lean_pocket enabled
     Given that the user has Pocket Network latest version installed.
     And user wants to import a list of keys
     And user starts pocket core
@@ -102,7 +92,7 @@ In order to use lean_pocket, user must be able to import additional keys.
       E[2022-07-13|09:19:39.899] FSM event handler returned                   module=blockchain err="peer height too low, old peer removed/ new peer not added" state=waitForPeer event=statusResponseEv
 
 
-  Scenario: --useLean and --forceSetValidators start arguments used but keyfile is malformed
+  Scenario: lean_pocket enabled and --forceSetValidators start arguments used but keyfile is malformed
     Given that the user has Pocket Network latest version installed.
     and user wants to import a list of keys
     When starting pocket core
