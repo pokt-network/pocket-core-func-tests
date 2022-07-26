@@ -43,7 +43,7 @@ Scenario: xxx Make sure stake slashing does scale when RSCAL is enabled
     And each node is subjected to a single slashing event
     Then the stake of node2 should have reduced twice as much than that of node1
     
-Scenario: xxx Make sure stake can be updated friely within the same bin when VEDIT is disabled and RSCAL is diabled
+Scenario: xxx Make sure stake can be updated freely within the same bin when VEDIT is disabled and RSCAL is diabled
     Given that the user is running pocket version RC 0.9.0 and current block is less than VEDIT activation and RSCAL activation
     And a given node it's in a current session with stake 15001000000 upokt
     And wants to edit or modify his current stake within the network
@@ -55,7 +55,7 @@ Scenario: xxx Make sure stake can be updated friely within the same bin when VED
     | pocket query node <NodeAddress> | 
     Then user finds that the stake amount has been updated.
 
-Scenario: xxx Make sure stake can be updated friely within the same bin when VEDIT is disabled and RSCAL is enabled
+Scenario: xxx Make sure stake can be updated freely within the same bin when VEDIT is disabled and RSCAL is enabled
     Given that the user is running pocket version RC 0.9.0 and current block is less than VEDIT activation and greater than RSCAL activation
     And a given node it's in a current session with stake 15001000000 upokt
     And wants to edit or modify his current stake within the network
@@ -67,7 +67,7 @@ Scenario: xxx Make sure stake can be updated friely within the same bin when VED
     | pocket query node <NodeAddress> | 
     Then user finds that the stake amount has been updated.
 
-Scenario: xxx Make sure stake can be updated friely within the same bin when VEDIT is enabled and RSCAL is disabled
+Scenario: xxx Make sure stake can be updated freely within the same bin when VEDIT is enabled and RSCAL is disabled
     Given that the user is running pocket version RC 0.9.0 and current block is greater than VEDIT activation but not greater than RSCAL activation
     And a given node it's in a current session with stake 15001000000 upokt
     And wants to edit or modify his current stake within the network
@@ -79,7 +79,7 @@ Scenario: xxx Make sure stake can be updated friely within the same bin when VED
     | pocket query node <NodeAddress> | 
     Then user finds that the stake amount has been updated.
 
-Scenario: xxx Make sure stake can not be updated friely within the same bin when VEDIT and RSCAL is enabled
+Scenario: xxx Make sure stake can not be updated freely within the same bin when VEDIT and RSCAL is enabled
     Given that the user is running pocket version RC 0.9.0 and current block is greater than VEDIT and RSCAL activation
     And a given node it's in a current session with stake 15001000000 upokt
     And wants to edit or modify his current stake within the network
@@ -91,7 +91,7 @@ Scenario: xxx Make sure stake can not be updated friely within the same bin when
     | pocket query node <NodeAddress> | 
     Then user finds that the stake amount has NOT been updated.
 
-Scenario: xxx Make sure stake can be updated friely to the next bin when VEDIT and RSCAL is enabled
+Scenario: xxx Make sure stake can be updated freely to the next bin when VEDIT and RSCAL is enabled
     Given that the user is running pocket version RC 0.9.0 and current block is greater than VEDIT and RSCAL activation
     And a given node it's in a current session with stake 15001000000 upokt
     And wants to edit or modify his current stake within the network
